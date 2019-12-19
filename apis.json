@@ -1,0 +1,65 @@
+{
+    "name": "Apptentive",
+    "description": "Listen, retain, and engage your mobile customers w\/ Apptentive's in-app messaging, native surveys, customer feedback, ratings prompts, and customer support.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28324-apptentive.jpg",
+    "tags": [
+        "api provider",
+        "applications",
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/apptentive\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Apptentive",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28324-apptentive.jpg",
+            "humanURL": "http:\/\/www.apptentive.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apptentive-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apptentive-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "http:\/\/www.apptentive.com"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/apptentive"
+        },
+        {
+            "type": "Email",
+            "url": "privacy@apptentive.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@apptentive.com"
+        },
+        {
+            "type": "Email",
+            "url": "info@apptentive.com"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/Apptentive"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/apptentive.com"
+        }
+    ]
+}
