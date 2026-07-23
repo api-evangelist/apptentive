@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/apptentive
+packages:
+  - language: kotlin
+    registry: maven
+    name: com.apptentive:apptentive-kit-android
+    url: https://repo1.maven.org/maven2/com/apptentive/apptentive-kit-android/
+    install: "implementation 'com.apptentive:apptentive-kit-android:7.2.0'"
+    version: 7.2.0
+    repo: https://github.com/apptentive/apptentive-kit-android
+    official: true
+  - language: java
+    registry: maven
+    name: com.apptentive:apptentive-android
+    url: https://repo1.maven.org/maven2/com/apptentive/apptentive-android/
+    install: "implementation 'com.apptentive:apptentive-android:+'"
+    repo: https://github.com/apptentive/apptentive-android
+    note: legacy Android SDK (superseded by apptentive-kit-android)
+    official: true
+  - language: swift
+    registry: swift-package-manager
+    name: ApptentiveKit
+    url: https://github.com/apptentive/apptentive-kit-ios
+    install: "https://github.com/apptentive/apptentive-kit-ios.git (Swift Package Manager)"
+    repo: https://github.com/apptentive/apptentive-kit-ios
+    official: true
+  - language: objective-c
+    registry: cocoapods
+    name: apptentive-ios
+    url: https://github.com/apptentive/apptentive-ios
+    repo: https://github.com/apptentive/apptentive-ios
+    note: legacy iOS SDK (superseded by apptentive-kit-ios)
+    official: true
+  - language: javascript
+    registry: npm
+    name: apptentive-react-native
+    url: https://www.npmjs.com/package/apptentive-react-native
+    install: npm install apptentive-react-native
+    version: 7.1.0
+    repo: https://github.com/apptentive/apptentive-react-native
+    official: true
+  - language: javascript
+    registry: github
+    name: alchemer-kit-web
+    url: https://github.com/apptentive/alchemer-kit-web
+    repo: https://github.com/apptentive/alchemer-kit-web
+    note: web SDK (Alchemer Digital), distributed via GitHub
+    official: true

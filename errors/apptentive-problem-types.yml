@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: derived
+format: json
+source: openapi/apptentive-openapi-original.yml
+note: >-
+  Derived from the Swagger 2.0 4xx/5xx responses. The API does not use RFC 9457
+  application/problem+json; errors are returned as JSON objects (ErrorBadRequestResponse,
+  ErrorUnauthorizedResponse, ErrorNotFoundResponse, ErrorInternalErrorResponse).
+problems:
+  - status: 400
+    schema: ErrorBadRequestResponse
+    title: Bad request
+    remediation: Validate query/path parameters (dates in YYYY-MM-DD, mongo-id format for ids).
+  - status: 401
+    schema: ErrorUnauthorizedResponse
+    title: Not authorized
+    remediation: Supply a valid X-API-KEY header (or api_key query parameter).
+  - status: 404
+    schema: ErrorNotFoundResponse
+    title: Not found
+    remediation: Verify the resource id exists (e.g. GDPR/CCPA request id).
+    applies_to:
+      - openapi/apptentive-openapi-original.yml#getGDPRRequest
+  - status: 500
+    schema: ErrorInternalErrorResponse
+    title: Internal server error
+    remediation: Retry with backoff; contact support if persistent.

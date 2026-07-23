@@ -1,0 +1,803 @@
+swagger: '2.0'
+info:
+  description: Public API Service
+  version: 2.0.0
+  title: public-api-service experimental API
+  termsOfService: https://www.apptentive.com/terms/
+host: data.apptentive.com
+basePath: /
+schemes:
+- https
+- http
+tags:
+- name: experimental
+  description: experimental data endpoints
+paths:
+  /experimental/v2/apps/{app_id}/surveys:
+    get:
+      tags:
+      - experimental
+      summary: Retrieve surveys
+      description: Retrieve surveys
+      operationId: getBasicSingleSurveyResponses
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: start_date
+        in: query
+        description: start date in format of YYYY-MM-DD
+        required: false
+        type: string
+      - name: end_date
+        in: query
+        description: end date in format of YYYY-MM-DD
+        required: false
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: survey responses object
+          schema:
+            $ref: '#/definitions/BasicSurveyResponsesObject'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /experimental/v2/apps/{app_id}/surveys/{survey_id}:
+    get:
+      tags:
+      - experimental
+      summary: Retrieve single survey response
+      description: Retrieve single survey response
+      operationId: getBasicSingleSurveyResponse
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: survey_id
+        in: path
+        description: the survey id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: single survey response object
+          schema:
+            $ref: '#/definitions/SurveyStatsRow'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /experimental/v2/apps/{app_id}/notes:
+    get:
+      tags:
+      - experimental
+      summary: Retrieve basic notes information
+      description: Retrieve single survey response
+      operationId: getBasicNotes
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: start_date
+        in: query
+        description: start date in format of YYYY-MM-DD
+        required: false
+        type: string
+      - name: end_date
+        in: query
+        description: end date in format of YYYY-MM-DD
+        required: false
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: notes responses object
+          schema:
+            $ref: '#/definitions/BasicNotesResponsesObject'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /experimental/v2/apps/{app_id}/notes/{note_id}:
+    get:
+      tags:
+      - experimental
+      summary: Retrieve single note
+      description: Retrieve single note
+      operationId: getBasicSingleNote
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: note_id
+        in: path
+        description: the note id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: single note response object
+          schema:
+            $ref: '#/definitions/NotesStatsRow'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /experimental/v2/apps/{app_id}/reach/sdk:
+    get:
+      tags:
+      - experimental
+      summary: Retrieve Native SDK version distribution
+      description: Retrieve SDK destribution
+      operationId: getSDKDistribution
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: sdk versions reponse object
+          schema:
+            $ref: '#/definitions/ReachSDKResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /experimental/v2/apps/{app_id}/app-health/rating-dialog:
+    get:
+      tags:
+      - experimental
+      summary: Retrieve Rating Dialogs (Request-To-Rate)
+      description: Retrieve Rating Dialogs
+      operationId: getRatingDialog
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: start_date
+        in: query
+        description: start date in format of YYYY-MM-DD
+        required: true
+        type: string
+      - name: end_date
+        in: query
+        description: end date in format of YYYY-MM-DD
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: sdk versions reponse object
+          schema:
+            $ref: '#/definitions/RatingDialogResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+definitions:
+  DialogTimeseries:
+    type: object
+    properties:
+      date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      dialog_views:
+        type: number
+        description: the amount of dialog views
+        example: 100
+      not_shown:
+        type: number
+        description: the amount of not shown views
+        example: 200
+      alt_dialog:
+        type: number
+        description: the amount of alt dialog views
+        example: 300
+      apptentive_rated:
+        type: number
+        description: the amount of apptentive rated views
+        example: 400
+      apptentive_remind_me:
+        type: number
+        description: the amount of apptentive remind me views
+        example: 500
+      apptentive_no_thanks:
+        type: number
+        description: the amount of apptentive no thanks views
+        example: 500
+  SurveyQuestionAnswerChoice:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given Answer Choice
+        example: 614cb7b8a59ced06f8000055
+      value:
+        type: string
+        description: The text of the given Answer Choice
+        example: Award System
+  SurveyStatsRow:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the hex id representation of the survey object
+        example: 614cb7b8a59ced06f8000055
+      active:
+        type: boolean
+        description: boolean value that identifies whether survey is currently active
+      created_at:
+        type: string
+        description: the survey created date in format 'YYYY-MM-DD'
+        example: '2020-01-01'
+      updated_at:
+        type: string
+        description: the survey updated date in format 'YYYY-MM-DD'
+        example: '2020-01-01'
+      start_time:
+        type: string
+        description: the date in format YYYY-MM-DD when survey has officially launched, null if never started
+        example: '2020-01-01'
+      end_time:
+        type: string
+        description: the date in format YYYY-MM-DD when survey has officially ended, null if never ended (still active)
+        example: '2020-01-01'
+      response_count:
+        type: number
+        description: the total response count
+        example: 115000
+      response_rate:
+        type: number
+        description: the percentage of total response rate for the given survey
+        example: 85.93
+      name:
+        type: string
+        description: the name of survey
+        example: My Survey
+      title:
+        type: string
+        description: the title representation of the survey (for customers)
+        example: Feature Usage Survey
+      description:
+        type: string
+        description: the description of the survey
+        example: Please let us know what do you think about our rewards
+      events:
+        type: array
+        description: events associated with the following surveys
+        items:
+          type: string
+          description: event name
+          example: bucket-award-open
+      required:
+        type: boolean
+        description: whether the Survey is required to be completed
+        example: true
+      multiple_responses:
+        type: boolean
+        description: whether the Survey allows the same person to complete it multiple times
+        example: false
+      show_success_message:
+        type: boolean
+        description: whether a success message is shown when the Survey is completed
+        example: true
+      success_message:
+        type: string
+        description: message displayed upon survey completion if show_success_message is true
+        example: Thank you for your input.
+      view_period:
+        type: number
+        description: minimum number of seconds between showing Survey
+        example: 86400
+      resp_max:
+        type: number
+        description: maximum number of responses allowed for the Survey
+        example: 1000
+      view_count:
+        type: number
+        description: maximum number of responses allowed for the Survey
+        example: 340
+      questions:
+        type: array
+        items:
+          $ref: '#/definitions/SurveyQuestions'
+        description: survey questions
+  SurveyRangeAnswerChoice:
+    type: object
+    properties:
+      min:
+        type: number
+        description: the min of range
+        example: 1
+      max:
+        type: number
+        description: the max of range
+        example: 5
+      min_value:
+        type: string
+        description: the min string representation of range
+        example: Low
+      max_value:
+        type: string
+        description: the max string representaion of range
+        example: High
+  SDKVersionObject:
+    properties:
+      version:
+        type: string
+        description: the version of Apptentive SDK
+        example: 6.0.1
+      mau_unique:
+        type: number
+        description: number of unique devices associated with corresponding SDK version
+        example: 41255288
+      percentage_from_total:
+        type: number
+        description: the percentage from the total active users (up to 5 floating points)
+        example: 98.995
+  BasicNotesResponsesObject:
+    type: object
+    properties:
+      notes:
+        $ref: '#/definitions/BasicNotesResponsesRowArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+  NotesActionViewArray:
+    type: array
+    items:
+      $ref: '#/definitions/NotesActionView'
+    description: list of notes actions
+  ReachSDKResponse:
+    type: object
+    properties:
+      app_id:
+        type: string
+        description: apptentive's application identifier
+        example: 5e22085d5379215be800002b
+      start_date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      end_date:
+        type: string
+        description: the end date representation in YYYY-MM-DD format
+        example: 2022-06-17
+      total_mau:
+        type: integer
+        description: number of total monthly active users
+        example: 41674096
+      sdk_versions:
+        $ref: '#/definitions/SDKVersionArray'
+  NotesStatsRow:
+    type: object
+    properties:
+      name:
+        type: string
+        description: the name of the note
+        example: Feedback Note
+      title:
+        type: string
+        description: the title of the note
+        example: Your Feedback is important
+      body:
+        type: string
+        description: the description of the note
+        example: We've updated our rewards system and would love your feedback
+      start_time:
+        type: string
+        description: the date in format YYYY-MM-DD when note has officially launched, null if never started
+        example: '2020-01-01'
+      end_time:
+        type: string
+        description: the date in format YYYY-MM-DD when note has officially ended, null if never ended (still active)
+        example: '2020-01-01'
+      first_active_at:
+        type: string
+        description: the date in format YYYY-MM-DD when note was first active
+        example: '2020-01-01'
+      active:
+        type: boolean
+        description: boolean value determines if the note is active
+      views:
+        type: number
+        description: the total amount of views for the particular note
+        example: 11144
+      actions:
+        $ref: '#/definitions/NotesActionViewArray'
+  BasicNotesResponsesRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/BasicNoteResponse'
+    description: the list of notes
+  NotesActionView:
+    type: object
+    properties:
+      count:
+        type: number
+        description: total interaction count for the particular action
+        example: 129405
+      interaction_type:
+        type: string
+        description: the type of the note action
+        example: Survey | cancel | dismiss | NavigateToLink
+      label:
+        type: string
+        description: the text label of the given note action
+        example: No thanks
+  ErrorBadRequestResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: some params are missing
+  BasicSurveyResponsesRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/BasicSurveyResponse'
+    description: the list of surveys
+  BasicNoteResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given survey id
+        example: 5e22085d5379215be800002b
+      active:
+        type: boolean
+        description: the state of note (active or not active)
+        example: true
+      created_at:
+        type: string
+        description: note created date
+        example: 2014-09-24 21:29:07.489000+00:00
+      name:
+        type: string
+        description: the name of note
+        example: My Note
+      title:
+        type: string
+        description: the title representation of the note
+        example: Feature Usage Note
+      body:
+        type: string
+        description: the description of the note
+        example: Please let us know what do you think about our rewards
+  BasicSurveyResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given survey id
+        example: 5e22085d5379215be800002b
+      active:
+        type: boolean
+        description: the state of survey (active or not active)
+        example: true
+      created_at:
+        type: string
+        description: survey created date
+        example: 2014-09-24 21:29:07.489000+00:00
+      name:
+        type: string
+        description: the name of survey
+        example: My Survey
+      title:
+        type: string
+        description: the title representation of the survey (for customers)
+        example: Feature Usage Survey
+      description:
+        type: string
+        description: the description of the survey
+        example: Please let us know what do you think about our rewards
+  ErrorInternalErrorResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: unable to get the data - please contact the support team
+  ErrorUnauthorizedResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: not authorized
+  SurveyQuestions:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the id of the question
+        example: 614cb7b8a59ced06f8000055
+      type:
+        type: string
+        description: The type of Answer allowed (multichoice, multiselect, range, nps, or singleline which includes all open ended questions)
+        example: multichoice | multiselect | range | nps | singleline
+      value:
+        type: string
+        description: the question text
+        example: What would you like improved in the app?
+      required:
+        type: boolean
+        description: whether the Question is required
+        example: true
+      answer_choices:
+        type: array
+        items:
+          $ref: '#/definitions/SurveyQuestionAnswerChoice'
+      range_choice:
+        $ref: '#/definitions/SurveyRangeAnswerChoice'
+  RatingDialogResponse:
+    type: object
+    properties:
+      app_id:
+        type: string
+        description: apptentive's application identifier
+        example: 5e22085d5379215be800002b
+      start_date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      end_date:
+        type: string
+        description: the end date representation in YYYY-MM-DD format
+        example: 2022-06-17
+      rating_opportunities:
+        type: object
+        properties:
+          opportunites:
+            type: number
+            description: the number of rating opportunities
+            example: 236993
+          via_in_app_dialog:
+            type: number
+            description: opportunities via in app dialog
+            example: 236293
+          via_apptentive_rate_action:
+            type: number
+            description: opportunities via apptentive rate action
+            example: 700
+      in_app_rating_dialogs:
+        type: object
+        properties:
+          dialog_views:
+            type: number
+            description: the number of dialog rating views
+            example: 36076
+          not_shown:
+            type: number
+            description: the number of not shown rating views
+            example: 46346
+          alt_dialog:
+            type: number
+            description: alternative dialog number
+            example: 2523
+      apptentive_rating_dialogs:
+        type: object
+        properties:
+          rated:
+            type: number
+            description: the number of apptentive rated dialog views
+            example: 23423
+          remind_me:
+            type: number
+            description: the number of apptentive remind me later dialog views
+            example: 342
+          no_thanks:
+            type: number
+            description: the number of apptentive declined dialog views
+            example: 15
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/DialogTimeseries'
+  BasicSurveyResponsesObject:
+    type: object
+    properties:
+      surveys:
+        $ref: '#/definitions/BasicSurveyResponsesRowArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+  SDKVersionArray:
+    type: array
+    items:
+      $ref: '#/definitions/SDKVersionObject'
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: X-API-KEY
+    in: header

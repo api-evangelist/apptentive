@@ -1,0 +1,117 @@
+swagger: '2.0'
+info:
+  description: Public API Service
+  version: 2.0.0
+  title: public-api-service experimental info API
+  termsOfService: https://www.apptentive.com/terms/
+host: data.apptentive.com
+basePath: /
+schemes:
+- https
+- http
+tags:
+- name: info
+  description: info endpoints
+paths:
+  /info:
+    get:
+      tags:
+      - info
+      summary: Show accessible endpoints
+      description: show access data endpoints
+      operationId: showDataEndpoints
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: access information
+          schema:
+            $ref: '#/definitions/InfoResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+definitions:
+  ErrorInternalErrorResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: unable to get the data - please contact the support team
+  CacheInfo:
+    type: object
+    properties:
+      rate:
+        type: string
+        description: how many requests is elligble per 5 minutes
+        example: 100
+      limit:
+        type: string
+        description: how many requests are remaining before reset
+        example: 99
+      reset:
+        type: string
+        description: date when the limit will be reset
+        example: 2022-09-16 02:20 UTC
+  ErrorUnauthorizedResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: not authorized
+  AccessInfo:
+    type: object
+    properties:
+      raw_endpoints:
+        type: array
+        items:
+          type: string
+          example: data.apptentive.com/...
+      metrics_endpoints:
+        type: array
+        items:
+          type: string
+          example: data.apptentive.com/...
+  ErrorBadRequestResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: some params are missing
+  InfoResponse:
+    type: object
+    properties:
+      access:
+        $ref: '#/definitions/AccessInfo'
+      cache:
+        $ref: '#/definitions/CacheInfo'
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: X-API-KEY
+    in: header

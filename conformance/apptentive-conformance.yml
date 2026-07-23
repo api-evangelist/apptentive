@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.alchemer.com/security/
+standards:
+  - id: apikey-auth
+    conforms: true
+    evidence: openapi securityDefinitions ApiKeyAuth type apiKey (X-API-KEY header)
+  - id: oauth2
+    conforms: false
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors returned as plain JSON, not application/problem+json
+  - id: rest-json
+    conforms: true
+    evidence: REST API, JSON request/response (XML optional)
+  - id: soc2-type2
+    conforms: true
+    evidence: AICPA SOC 2 Type 2 (alchemer.com/security)
+  - id: iso-27001
+    conforms: true
+    evidence: ISO 27001 certified (alchemer.com/security)
+  - id: gdpr
+    conforms: true
+    evidence: GDPR compliant; dedicated GDPR/CCPA request API endpoints
+  - id: ccpa
+    conforms: true
+    evidence: CCPA compliant; GDPR/CCPA request API endpoints
+  - id: hipaa
+    conforms: true
+    evidence: HIPAA compliant (alchemer.com/security)
+  - id: ferpa
+    conforms: true
+    evidence: FERPA compliant (alchemer.com/security)

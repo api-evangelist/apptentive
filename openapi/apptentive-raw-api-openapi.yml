@@ -1,0 +1,1276 @@
+swagger: '2.0'
+info:
+  description: Public API Service
+  version: 2.0.0
+  title: public-api-service experimental raw API
+  termsOfService: https://www.apptentive.com/terms/
+host: data.apptentive.com
+basePath: /
+schemes:
+- https
+- http
+tags:
+- name: raw
+  description: raw data endpoints
+paths:
+  /raw/v2/apps/{app_id}/messages:
+    get:
+      tags:
+      - raw
+      summary: Retrieve all messages
+      description: Retrieve all messages
+      operationId: getMessages
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: The message id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: message response
+          schema:
+            $ref: '#/definitions/MessagesResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/devices:
+    get:
+      tags:
+      - raw
+      summary: Retrieve all devices
+      description: Retrieve all devices
+      operationId: getDevices
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: The device id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: devices response
+          schema:
+            $ref: '#/definitions/DevicesResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/devices/{device_id}:
+    get:
+      tags:
+      - raw
+      summary: Retrieve single device
+      description: Retrieve single device
+      operationId: getSingleDevice
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: device_id
+        in: path
+        description: the device id in mongo format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: single device response
+          schema:
+            $ref: '#/definitions/Device'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/people:
+    get:
+      tags:
+      - raw
+      summary: Retrieve all people
+      description: Retrieve all people
+      operationId: getPeople
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: The people id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: people response
+          schema:
+            $ref: '#/definitions/PeopleResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/people/{person_id}:
+    get:
+      tags:
+      - raw
+      summary: Retrieve single person
+      description: Retrieve single person
+      operationId: getSinglePerson
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: person_id
+        in: path
+        description: the person id in mongo format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: person response
+          schema:
+            $ref: '#/definitions/Person'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/conversations:
+    get:
+      tags:
+      - raw
+      summary: Retrieve all conversations
+      description: Retrieve all conversations
+      operationId: getConversations
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: The conversation id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: conversation response
+          schema:
+            $ref: '#/definitions/ConversationResponse'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/conversations/{conversation_id}:
+    get:
+      tags:
+      - raw
+      summary: Retrieve single person
+      description: Retrieve single person
+      operationId: getSingleConversation
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: conversation_id
+        in: path
+        description: the conversation id in mongo format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: single conversation response
+          schema:
+            $ref: '#/definitions/Conversation'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/conversation-all-data/{conversation_id}:
+    get:
+      description: Retrieve conversation data
+      parameters:
+      - description: The application ID in Mongo ID format (ex. 5e22085d5379215be800002b)
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: The conversation ID in Mongo format (ex. 5e22085d5379215be800002b)
+        in: path
+        name: conversation_id
+        required: true
+        type: string
+      - description: (optional) You can provide the X-API-KEY as 'api_key' query parameter
+        in: query
+        name: api_key
+        type: string
+      - description: (optional) You can provide the accept header as 'accept' query parameter
+        in: query
+        name: accept
+        type: string
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        '200':
+          description: Conversation all response
+          schema:
+            $ref: '#/definitions/ConversationAllResponse'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve all data for conversation
+      tags:
+      - raw
+  /raw/v2/apps/{app_id}/surveys/{survey_id}/responses:
+    get:
+      tags:
+      - raw
+      summary: Retrieve all survey responses
+      description: Retrieve all survey responses
+      operationId: getRawSurveyResponses
+      produces:
+      - application/json
+      - application/xml
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: app_id
+        in: path
+        description: the application id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: survey_id
+        in: path
+        description: the survey id in mongo id format (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: start_date
+        in: query
+        description: start date in format of YYYY-MM-DD
+        required: false
+        type: string
+      - name: end_date
+        in: query
+        description: end date in format of YYYY-MM-DD
+        required: false
+        type: string
+      - name: page_size
+        in: query
+        description: the page size number
+        default: 100
+        required: false
+        type: string
+      - name: order
+        in: query
+        description: the order by date (desc | asc)
+        default: asc
+        required: false
+        type: string
+      - name: starts_after
+        in: query
+        description: The survey response id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)
+        required: true
+        type: string
+      - name: api_key
+        in: query
+        description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+        required: false
+        type: string
+      - name: accept
+        in: query
+        description: (optional) you can provide the accept header as 'accept' query parameter
+        required: false
+        type: string
+      responses:
+        '200':
+          description: survey responses object
+          schema:
+            $ref: '#/definitions/SurveyResponsesObject'
+        '400':
+          description: bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+  /raw/v2/apps/{app_id}/custom-attributes-keys:
+    get:
+      description: Retrieve person and device custom data
+      parameters:
+      - description: The application ID in Mongo ID format (ex. 5e22085d5379215be800002b)
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: (optional) You can provide the X-API-KEY as 'api_key' query parameter
+        in: query
+        name: api_key
+        type: string
+      - description: (optional) You can provide the accept header as 'accept' query parameter
+        in: query
+        name: accept
+        type: string
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        '200':
+          description: Custom Attributes Keys Response
+          schema:
+            $ref: '#/definitions/CustomAttributesKeysResponse'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        '401':
+          description: Not authorized
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve all custom attributes for application
+      tags:
+      - raw
+definitions:
+  SRPerson:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the hex id of the person
+        example: 95fbe2e775bf3c760b1000bc
+      custom_data:
+        $ref: '#/definitions/CustomData'
+      email:
+        type: string
+        description: person email
+        example: foo@bar.com
+      facebook_id:
+        type: string
+        description: the facebook id
+        example: 1184928249824
+      mparticle_id:
+        type: string
+        description: the mParticle id
+        example: -29482958295729572
+      name:
+        type: string
+        description: person name
+        example: Jack Daniels
+  ConversationAll:
+    properties:
+      app_id:
+        type: string
+      app_release:
+        $ref: '#/definitions/model.ConversationAllAppRelease'
+      created_at:
+        type: string
+      device_id:
+        type: string
+      id:
+        type: string
+      person_id:
+        type: string
+      state:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  Conversation:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given Person
+        example: 5e22085d5379215be800002b
+      state:
+        type: string
+        description: conversation state
+        example: new
+      person_id:
+        type: string
+        description: The person id that is associated with following conversation id
+        example: 5e22085d5379215be800002b
+      device_id:
+        type: string
+        description: The device id that is associated with following conversation id
+        example: 5e22085d5379215be800002b
+      app_release:
+        $ref: '#/definitions/CustomData'
+  TypeValue:
+    properties:
+      description:
+        type: string
+      is_visible:
+        type: boolean
+      type:
+        type: string
+    type: object
+  SurveyResponsesRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/SurveyResponse'
+    description: the list of survey responses
+  SRAppRelease:
+    type: object
+    properties:
+      cf_bundle_version:
+        type: string
+        description: the build version number of the bundle
+        example: 78
+      cf_bundle_short_version_string:
+        type: string
+        description: the short version of the build version
+        example: 4.5.11
+      sdk_version:
+        type: string
+        description: sdk version
+        example: 4.5.11
+      sdk_platform:
+        type: string
+        description: sdk platform type
+        example: iOS
+      sdk_distribution:
+        type: string
+        description: the sdk distribution
+        example: source
+      sdk_distribution_version:
+        type: string
+        description: the sdk distribution version
+        example: 4.5.11
+  PeopleResponse:
+    type: object
+    properties:
+      people:
+        $ref: '#/definitions/PersonRowArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+  MessageArray:
+    type: array
+    items:
+      $ref: '#/definitions/Message'
+    description: list of conversation messages
+  SnapshotData:
+    type: object
+    properties:
+      device:
+        $ref: '#/definitions/SRDevice'
+      person:
+        $ref: '#/definitions/SRPerson'
+      app_release:
+        $ref: '#/definitions/SRAppRelease'
+  Question:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given survey response question
+        example: 5e22085d5379215be800002b
+      value:
+        type: string
+        description: The survey question value
+        example: Choose one option
+      type:
+        type: string
+        description: the type of the question
+        example: multichoice | multiselect | range | nps | singleline
+  SRAnswersRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/SurveyAnswerResponse'
+    description: the list of survey response answers
+  MessagesResponse:
+    type: object
+    properties:
+      messages:
+        $ref: '#/definitions/MessageArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 64115344869d1b289c000049
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+  DevicesResponse:
+    type: object
+    properties:
+      devices:
+        $ref: '#/definitions/DevicesRowArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 64115344869d1b289c000049
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+  ConversationRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/Conversation'
+    description: the list of conversations
+  SurveyAnswerResponse:
+    type: object
+    properties:
+      question:
+        $ref: '#/definitions/Question'
+      answer:
+        $ref: '#/definitions/Answer'
+  Message:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the hex id message object representation
+        example: 5e22085d5379215be800002b
+      body:
+        type: string
+        description: the text body representation of the message
+        example: Hello, how are you?
+      conversation_id:
+        type: string
+        description: the hex id of the conversation the following message belongs to
+        example: 5e22085d5379215be800002b
+      created_at:
+        type: string
+        description: the date when this message was created
+        example: '2018-04-09T21:18:22.677Z'
+      inbound:
+        type: boolean
+        description: A boolean value denoting whether the message originated from the end-consumer or as a response back to them.  inbound:true originated from the mobile app
+        example: true
+      hidden:
+        type: boolean
+        description: identify if this message is hidden
+        example: true
+      snapshot_data:
+        $ref: '#/definitions/MessageSnapshotData'
+      customer_tags:
+        type: array
+        items:
+          type: string
+          description: customer tags
+          example: hello-message
+      nonce:
+        type: string
+        description: a unique identifier provided by the Message creator to ensure that duplicate Messages are not accidentally created
+        example: C3FEEECB-D729-4508-B455-B04789D80142
+      client_created_at_utc_offset:
+        type: number
+        description: the offset, in seconds, from UTC that client_created_at represents
+        example: -14400
+      client_created_at:
+        type: number
+        description: The timestamp (with fractional seconds) that the Message was created at on the server. In UTC
+        example: 1667312180.5092402
+      automated:
+        type: boolean
+        description: whether the message is automated
+        example: false
+      attachments:
+        type: array
+        items:
+          $ref: '#/definitions/MessageAttachment'
+        description: message attachments (optional)
+      state:
+        type: string
+        description: the current state of the conversation. Can be open, waiting, or archived.
+        example: open
+      device_id:
+        type: string
+        description: the hex id of a device that initiates this message
+        example: 5e22085d5379215be800002b
+      person_id:
+        type: string
+        description: the hex id of a person that initiates this message
+        example: 5e22085d5379215be800002b
+  Device:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given Device
+        example: 74e4d31328687cb30401460f
+      os_name:
+        type: string
+        description: The operating system name
+        example: iPhone OS
+      os_version:
+        type: string
+        description: The version of the operating system
+        example: 7.1.2
+      os_build:
+        type: string
+        description: The operating system build identifier
+        example: 11D257
+      os_api_level:
+        type: string
+        description: The operating system API level (Android only)
+        example: 7.1.2
+      manufacturer:
+        type: string
+        description: The manufacturer of the Device
+        example: TSMC
+      model:
+        type: string
+        description: The model of the Device
+        example: iPhone 8 CDMA
+      board:
+        type: string
+        description: The name of the Device’s board
+        example: DeviceBoard
+      product:
+        type: string
+        description: The product name of the Device
+        example: iPhone 8
+      brand:
+        type: string
+        description: The brand of Device
+        example: smdk4210
+      cpu:
+        type: string
+        description: The CPU type within the Device
+        example: Apple A6
+      hardware:
+        type: string
+        description: The hardware identifier of the Device
+        example: iPhone10,1
+      carrier:
+        type: string
+        description: The primary network carrier for the Device
+        example: Verizon
+      current_carrier:
+        type: string
+        description: The currently active network carrier
+        example: Verizon
+      uuid:
+        type: string
+        description: the device uuid identificator
+        example: 77625c5d-c52c-401f-a7f2-99b29f0e6970
+      network_type:
+        type: string
+        description: The type of network that the Device is currently using
+        example: HSDPA
+      build_type:
+        type: string
+        description: The type of build for the Device
+        example: user
+      build_id:
+        type: string
+        description: The Device build identifier
+        example: GINGERBREAD
+      bootloader_version:
+        type: string
+        description: The version number of the bootloader for the Device
+        example: 1.0
+      radio_version:
+        type: string
+        description: The version number for the radio firmware on the Device
+        example: N7000BDCLSB
+      custom_data:
+        $ref: '#/definitions/CustomData'
+      local_language_code:
+        type: string
+        description: The two character language code for the Device’s current locale
+        example: US
+      local_country_code:
+        type: string
+        description: The two character country code for the Device’s current locale
+        example: en
+      locale_raw:
+        type: string
+        description: The raw locale string for the Device
+        example: en_US
+  MessageSnapshotData:
+    type: object
+    properties:
+      timestamp:
+        type: number
+        description: snapshot data unix timestamp
+        example: 1667319932
+      app_release:
+        $ref: '#/definitions/SRAppRelease'
+      sender:
+        $ref: '#/definitions/MessageSender'
+  SRDevice:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the hex id of the device
+        example: 55fbe2e775bf3c760b1000bc
+      carrier:
+        type: string
+        description: The primary network carrier for the Device
+        example: Verizon
+      custom_data:
+        $ref: '#/definitions/CustomData'
+      manufacturer:
+        type: string
+        description: device manufacturer
+        example: Samsung
+      model:
+        type: string
+        description: device model
+        example: S22
+      os_api_level:
+        type: string
+        description: api level of the operating system
+        example: 3.5.9
+      os_name:
+        type: string
+        description: Operating System label
+        example: Android
+      os_version:
+        type: string
+        description: Operating System version
+        example: 5.2.0
+  SurveyResponse:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given survey response
+        example: 5e22085d5379215be800002b
+      survey_id:
+        type: string
+        description: The survey id of the given survey response
+        example: 6e22085d5379215be800002b
+      created_at:
+        type: string
+        description: survey response created date
+        example: '2020-09-24T00:20:10'
+      conversation_id:
+        type: string
+        description: The conversation id of the give survey response
+        example: 7e22085d5379215be800002b
+      answers:
+        $ref: '#/definitions/SRAnswersRowArray'
+      snapshot_data:
+        $ref: '#/definitions/SnapshotData'
+  ErrorBadRequestResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: some params are missing
+  CustomData:
+    type: object
+    description: customer specific data
+    properties:
+      key:
+        type: string
+        description: custom key definition
+        example: CustomKey
+      value:
+        type: string
+        description: custom value definition
+        example: CustomValue
+  Person:
+    type: object
+    properties:
+      id:
+        type: string
+        description: The id of the given Person
+        example: 64115344869d1b289c000049
+      name:
+        type: string
+        description: The full (first and last) name of the Person
+        example: Bob
+      email:
+        type: string
+        description: The e-mail address of the Person
+        example: bob@gmail.com
+      custom_data:
+        $ref: '#/definitions/CustomData'
+      mparticle_id:
+        type: string
+        description: mparticle_id (if exists)
+        example: PeopleResponse
+  DevicesRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/Device'
+    description: the list of devices
+  Answer:
+    type: object
+    properties:
+      value:
+        type: string
+        description: selected answer value (could be an array of strings)
+        example: '''yes'' OR [''Red'', ''Blue'']'
+  ConversationAllResponse:
+    properties:
+      conversation:
+        $ref: '#/definitions/ConversationAll'
+      conversation_id:
+        type: string
+      device:
+        $ref: '#/definitions/ConversationAllDevice'
+      device_id:
+        type: string
+      person:
+        $ref: '#/definitions/ConversationAllPerson'
+      person_id:
+        type: string
+    type: object
+  PersonRowArray:
+    type: array
+    items:
+      $ref: '#/definitions/Person'
+    description: the list of devices
+  CustomAttributesKeysResponse:
+    properties:
+      device_keys:
+        additionalProperties:
+          $ref: '#/definitions/TypeValue'
+        type: object
+      person_keys:
+        additionalProperties:
+          $ref: '#/definitions/TypeValue'
+        type: object
+    type: object
+  ErrorInternalErrorResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: unable to get the data - please contact the support team
+  ErrorUnauthorizedResponse:
+    type: object
+    properties:
+      error:
+        type: string
+        description: the root cause in text representation
+        example: not authorized
+  ConversationAllDevice:
+    properties:
+      advertiser_id:
+        type: string
+      board:
+        type: string
+      bootloader_version:
+        type: string
+      brand:
+        type: string
+      browser_height:
+        type: integer
+      browser_languages:
+        items:
+          type: string
+        type: array
+      browser_type:
+        type: string
+      browser_vendor:
+        type: string
+      browser_version:
+        type: string
+      browser_width:
+        type: integer
+      build_id:
+        type: string
+      build_type:
+        type: string
+      carrier:
+        type: string
+      content_size_category:
+        type: string
+      cookie_enabled:
+        type: boolean
+      cpu:
+        type: string
+      created_at:
+        type: string
+      current_carrier:
+        type: string
+      custom_data: {}
+      device:
+        type: string
+      hardware:
+        type: string
+      id:
+        type: string
+      locale_country_code:
+        type: string
+      locale_language_code:
+        type: string
+      locale_raw:
+        type: string
+      manufacturer:
+        type: string
+      model:
+        type: string
+      network_type:
+        type: string
+      orientation_angle:
+        type: integer
+      orientation_type:
+        type: string
+      os_api_level: {}
+      os_build:
+        type: string
+      os_name:
+        type: string
+      os_version:
+        type: string
+      product:
+        type: string
+      radio_version:
+        type: string
+      screen_height:
+        type: integer
+      screen_width:
+        type: integer
+      updated_at:
+        type: string
+      user_agent:
+        type: string
+      utc_offset:
+        type: integer
+      uuid:
+        type: string
+    type: object
+  ConversationResponse:
+    type: object
+    properties:
+      conversations:
+        $ref: '#/definitions/ConversationRowArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+  SurveyResponsesObject:
+    type: object
+    properties:
+      responses:
+        $ref: '#/definitions/SurveyResponsesRowArray'
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+  MessageAttachment:
+    type: object
+    properties:
+      size:
+        type: number
+        description: the size of the attachment
+        example: 128157
+      content_type:
+        type: string
+        description: the format of the attachment
+        example: image/jpeg
+      original_name:
+        type: string
+        description: the name of the attachment
+        example: Attachment 1
+      url:
+        type: string
+        description: direct source of the attachment
+        example: https://attachments.apptentive.com/.../2551487c60cb3618fa05728e
+  MessageSender:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the person id of the sender
+        example: 5e22085d5379215be800002b
+      name:
+        type: string
+        description: sender name
+        example: John Doe
+      profile_photo:
+        type: string
+        description: direct source of the photo profile
+        example: https://secure.gravatar.com/avatar/..d7cab1a059d1c7b?d=mm&r=pg
+      email:
+        type: string
+        description: sender email
+        example: johndoe@mail.com
+      custom_data:
+        $ref: '#/definitions/CustomData'
+  ConversationAllPerson:
+    properties:
+      address:
+        type: string
+      birthday:
+        type: string
+      created_at:
+        type: string
+      custom_data: {}
+      email:
+        type: string
+      id:
+        type: string
+      mparticle_id:
+        type: string
+      name:
+        type: string
+      phone_number:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: X-API-KEY
+    in: header

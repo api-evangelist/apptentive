@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apptentive-openapi-original.yml
+docs: https://help.alchemer.com/help/alchemer-digital-api
+authentication:
+  style: api-key
+  header: X-API-KEY
+  query_alt: api_key
+  note: Keys are generated and scoped in the Alchemer Digital dashboard.
+transport:
+  protocol: https
+  base: https://data.apptentive.com
+content_types:
+  request: [application/json]
+  response: [application/json, application/xml, text/csv]
+  note: JSON by default; XML optional via Accept header or the 'accept' query parameter. Some export endpoints also offer text/csv.
+pagination:
+  style: cursor
+  params:
+    - starts_after   # non-inclusive offset, mongo-id of the last item from the prior page
+    - page_size      # default 100
+  also_offset:
+    - page           # page-number style on some survey/response endpoints
+    - limit
+  note: Raw list endpoints use cursor pagination via starts_after (the 'ends_with' id of the prior page). Some reporting endpoints use page/limit.
+date_filtering:
+  params: [start_date, end_date]
+  format: YYYY-MM-DD
+idempotency:
+  supported: false
+  note: API is read-only (GET) except the GDPR/CCPA POST, which has no documented idempotency key.
+versioning:
+  style: uri-path
+  current: v2
+error_envelope:
+  format: json
+  schemas: [ErrorBadRequestResponse, ErrorUnauthorizedResponse, ErrorNotFoundResponse, ErrorInternalErrorResponse]
+  ref: errors/apptentive-problem-types.yml
+rate_limiting:
+  ref: rate-limits/apptentive-rate-limits.yml
+  signal: 100 requests / 5 minutes per IP
+cross_links:
+  authentication: authentication/apptentive-authentication.yml
+  errors: errors/apptentive-problem-types.yml
+  lifecycle: lifecycle/apptentive-lifecycle.yml
+  rate_limits: rate-limits/apptentive-rate-limits.yml

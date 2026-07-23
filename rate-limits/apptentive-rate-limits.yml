@@ -1,0 +1,13 @@
+generated: '2026-07-18'
+method: searched
+source: https://help.alchemer.com/help/alchemer-digital-api
+scope: per-ip
+rate_limits:
+  - name: default
+    limit_count: 100
+    window: 5m
+    window_seconds: 300
+    scope: ip-address
+    description: >-
+      Customers using the Alchemer Digital (Apptentive) Data API are limited to 100 requests
+      per five minutes for a given IP address. This cannot be set per customer.

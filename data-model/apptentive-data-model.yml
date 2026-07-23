@@ -1,0 +1,75 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/apptentive-openapi-original.yml
+note: Entity graph derived from OpenAPI paths and id-reference fields (app_id, survey_id, question_id, conversation_id, device_id, person_id).
+entities:
+  - name: App
+    id_field: app_id
+    id_format: mongo-objectid
+    description: An application registered in Apptentive/Alchemer Digital. Root scope for all data.
+  - name: Person
+    id_field: person_id
+    belongs_to: [App]
+  - name: Device
+    id_field: device_id
+    belongs_to: [App]
+  - name: Conversation
+    id_field: conversation_id
+    belongs_to: [App]
+  - name: Message
+    belongs_to: [App, Conversation]
+  - name: Survey
+    id_field: survey_id
+    belongs_to: [App]
+  - name: SurveyQuestion
+    id_field: question_id
+    belongs_to: [Survey]
+  - name: SurveyResponse
+    belongs_to: [Survey, SurveyQuestion]
+  - name: Note
+    id_field: note_id
+    belongs_to: [App]
+  - name: Review
+    belongs_to: [App]
+  - name: Event
+    belongs_to: [App]
+  - name: GDPRRequest
+    id_field: request_id
+    belongs_to: [App]
+relationships:
+  - from: Person
+    to: App
+    type: belongs_to
+    via: app_id
+  - from: Device
+    to: App
+    type: belongs_to
+    via: app_id
+  - from: Conversation
+    to: App
+    type: belongs_to
+    via: app_id
+  - from: Message
+    to: Conversation
+    type: belongs_to
+    via: conversation_id
+  - from: Survey
+    to: App
+    type: belongs_to
+    via: app_id
+  - from: SurveyQuestion
+    to: Survey
+    type: belongs_to
+    via: survey_id
+  - from: SurveyResponse
+    to: SurveyQuestion
+    type: belongs_to
+    via: question_id
+  - from: Note
+    to: App
+    type: belongs_to
+    via: app_id
+  - from: GDPRRequest
+    to: App
+    type: belongs_to
+    via: app_id

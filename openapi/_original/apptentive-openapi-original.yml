@@ -1,0 +1,4302 @@
+swagger: "2.0"
+info:
+  description: "Public API Service"
+  version: 2.0.0
+  title: "public-api-service"
+  termsOfService: "https://www.apptentive.com/terms/"
+host: "data.apptentive.com"
+basePath: "/"
+tags:
+  - name: "info"
+    description: "info endpoints"
+  - name: "raw"
+    description: "raw data endpoints"
+  - name: "metrics"
+    description: "metrics data endpoints"
+  - name: "experimental"
+    description: "experimental data endpoints"
+
+schemes:
+  - "https"
+  - "http"
+paths:
+  /info:
+    get:
+      tags:
+        - "info"
+      summary: "Show accessible endpoints"
+      description: "show access data endpoints"
+      operationId: "showDataEndpoints"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "access information"
+          schema:
+            $ref: "#/definitions/InfoResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps:
+    get:
+      tags:
+        - "metrics"
+      summary: "Get All Available Apps"
+      description: "Expose All Apps Assosiated with the JWT Token"
+      operationId: "getAllApps"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "the list of available apps"
+          schema:
+            $ref: "#/definitions/RollupResponseArray"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/app-health/active-users:
+    get:
+      tags:
+        - "metrics"
+      summary: "Active Users Data"
+      description: "Active Users Data"
+      operationId: "getActiveUsersData"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "period"
+          in: "query"
+          description: "granularity period: [ day | week | month | quarter | year | all ]"
+          required: false
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "active users data"
+          schema:
+            $ref: "#/definitions/ActiveUserResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/app-health/interactions/notes:
+    get:
+      tags:
+        - "metrics"
+      summary: "Get Notes Timeseries"
+      description: "Get Notes Timeseries"
+      operationId: "getNotes"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "notes timeseries data"
+          schema:
+            $ref: "#/definitions/NotesDataResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/app-health/interactions/surveys:
+    get:
+      tags:
+        - "metrics"
+      summary: "Get Surveys Timeseries"
+      description: "Get Surveys Timeseries"
+      operationId: "getSurveys"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "surveys timeseries data"
+          schema:
+            $ref: "#/definitions/SurveyDataResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/app-health/love-percent:
+    get:
+      tags:
+        - "metrics"
+      summary: "Love Percent Data"
+      description: "Love Percent Data"
+      operationId: "getLovePercentData"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "love percent timeseries data"
+          schema:
+            $ref: "#/definitions/LovePercentResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/app-health/ratings:
+    get:
+      tags:
+        - "metrics"
+      summary: "Star Ratings Data"
+      description: "Star Ratings Data"
+      operationId: "getRatings"
+      produces:
+        - "application/json"
+        - "application/xml"
+        - "text/csv"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "star ratings data"
+          schema:
+            $ref: "#/definitions/RatingsDataResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/app-health/retention:
+    get:
+      tags:
+        - "metrics"
+      summary: "Retention Data"
+      description: "Retention Data"
+      operationId: "getRetention"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "period"
+          in: "query"
+          description: "retention period, should be 'monthly' or 'daily'"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "retention data"
+          schema:
+            $ref: "#/definitions/RetentionResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/fan-signals/counts:
+    get:
+      tags:
+        - "metrics"
+      summary: "Fan Signals Counts Data"
+      description: "Fan Signals Counts Data"
+      operationId: "getFSCounts"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "fs counts data"
+          schema:
+            $ref: "#/definitions/FanSignalsCountsArray"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/fan-signals/net-fan-score:
+    get:
+      tags:
+        - "metrics"
+      summary: "Net Fan Score Data"
+      description: "Net Fan Score Data"
+      operationId: "getNFSData"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "net fan score data"
+          schema:
+            $ref: "#/definitions/NetFanScoreResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/reviews:
+    get:
+      tags:
+        - "metrics"
+      summary: "fetch app reviews"
+      description: "fetch app reviews"
+      operationId: "fetchReviews"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+        - "application/xml"
+        - "text/csv"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: false
+          type: "string"
+        - name: "regions"
+          in: "query"
+          description: "regions filter, can be comma-separated like US,CA,.. "
+          required: false
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "the reviews response"
+          schema:
+            $ref: "#/definitions/ReviewResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/stats/events:
+    get:
+      tags:
+        - "metrics"
+      summary: "Event Stats"
+      description: "Events Stats"
+      operationId: "getEventStats"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "include_all"
+          in: "query"
+          description: "include apptentive events"
+          required: false
+          type: "boolean"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "event stats data"
+          schema:
+            $ref: "#/definitions/EventStatsArray"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/stats/event-trend:
+    get:
+      tags:
+        - "metrics"
+      summary: "Event Trend Stats"
+      description: "Events Trend Stats"
+      operationId: "getEventTrendStats"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "label"
+          in: "query"
+          description: "event label"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "event stats trend data"
+          schema:
+            $ref: "#/definitions/EventStatsTrend"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/stats/notes:
+    get:
+      tags:
+        - "metrics"
+      summary: "Notes Stats"
+      description: "Notes Stats"
+      operationId: "getNotesStats"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "notes stats data"
+          schema:
+            $ref: "#/definitions/NotesStatsArray"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/stats/surveys:
+    get:
+      tags:
+        - "metrics"
+      summary: "Survey Stats"
+      description: "Surveys Stats"
+      operationId: "getSurveyStats"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "survey stats data"
+          schema:
+            $ref: "#/definitions/SurveyStatsArray"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/survey/{survey_id}/stats:
+    get:
+      tags:
+        - "metrics"
+      summary: "Survey Reporting Quantative Stats"
+      description: "Survey Reporting Quantative Stats"
+      operationId: "getOneSurveyStats"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "survey_id"
+          in: "path"
+          description: "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "survey questions stats data"
+          schema:
+            $ref: "#/definitions/QuestionStatsArray"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/survey/{survey_id}/question/{question_id}/responses:
+    get:
+      tags:
+        - "metrics"
+      summary: "Survey Reporting Text Responses"
+      description: "Survey Reporting Text Responses"
+      operationId: "getSurveyResponses"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "survey_id"
+          in: "path"
+          description: "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "question_id"
+          in: "path"
+          description: "the question id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "page"
+          in: "query"
+          description: "the page number"
+          default: 0
+          required: false
+          type: "string"
+        - name: "limit"
+          in: "query"
+          default: 20
+          description: "the limit of text responses, max limit is 1000"
+          required: false
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "survey responses data"
+          schema:
+            $ref: "#/definitions/SurveyResponses"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/survey/insights:
+    get:
+      tags:
+        - "metrics"
+      summary: "fetch survey responses"
+      description: "fetch survey responses"
+      operationId: "fetch responses"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+        - "application/xml"
+        - "text/csv"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "page"
+          in: "query"
+          description: "the page number"
+          default: 0
+          required: false
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "the reviews response"
+          schema:
+            $ref: "#/definitions/InsightsSurveyResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/gdpr-ccpa/requests:
+    post:
+      tags:
+        - "metrics"
+      summary: "Triggers GDPR/CCPA request"
+      consumes:
+        - application/json
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - in: body
+          name: gdprPayload
+          description: GDPR/CCPA request payload
+          schema:
+            $ref: "#/definitions/POSTGDPRRequest"
+      description: "Triggers GDPR/CCPA request"
+      operationId: "postGDPRRequest"
+      produces:
+        - "application/json"
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "201":
+          description: "the request is successfully submitted"
+          schema:
+            $ref: "#/definitions/POSTGDPRResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /metrics/v2/apps/{app_id}/gdpr-ccpa/requests/{request_id}:
+    get:
+      tags:
+        - "metrics"
+      summary: "Fetches GDPR/CCPA request status"
+      description: "Fetches GDPR/CCPA request status"
+      operationId: "getGDPRRequest"
+      produces:
+        - "application/json"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "request_id"
+          in: "path"
+          description: "the id of submitted GDPR/CCPA request"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "the gdpr/ccpa request status"
+          schema:
+            $ref: "#/definitions/GetGDPRStatusResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "404":
+          description: "not found"
+          schema:
+            $ref: "#/definitions/ErrorNotFoundResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/messages:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve all messages"
+      description: "Retrieve all messages"
+      operationId: "getMessages"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "The message id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "message response"
+          schema:
+            $ref: "#/definitions/MessagesResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/devices:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve all devices"
+      description: "Retrieve all devices"
+      operationId: "getDevices"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "The device id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "devices response"
+          schema:
+            $ref: "#/definitions/DevicesResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/devices/{device_id}:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve single device"
+      description: "Retrieve single device"
+      operationId: "getSingleDevice"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "device_id"
+          in: "path"
+          description: "the device id in mongo format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "single device response"
+          schema:
+            $ref: "#/definitions/Device"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/people:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve all people"
+      description: "Retrieve all people"
+      operationId: "getPeople"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "The people id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "people response"
+          schema:
+            $ref: "#/definitions/PeopleResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/people/{person_id}:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve single person"
+      description: "Retrieve single person"
+      operationId: "getSinglePerson"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "person_id"
+          in: "path"
+          description: "the person id in mongo format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "person response"
+          schema:
+            $ref: "#/definitions/Person"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/conversations:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve all conversations"
+      description: "Retrieve all conversations"
+      operationId: "getConversations"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "The conversation id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "conversation response"
+          schema:
+            $ref: "#/definitions/ConversationResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/conversations/{conversation_id}:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve single person"
+      description: "Retrieve single person"
+      operationId: "getSingleConversation"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "conversation_id"
+          in: "path"
+          description: "the conversation id in mongo format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "single conversation response"
+          schema:
+            $ref: "#/definitions/Conversation"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/conversation-all-data/{conversation_id}:
+    get:
+      description: "Retrieve conversation data"
+      parameters:
+        - description: "The application ID in Mongo ID format (ex. 5e22085d5379215be800002b)"
+          in: path
+          name: app_id
+          required: true
+          type: string
+        - description: "The conversation ID in Mongo format (ex. 5e22085d5379215be800002b)"
+          in: path
+          name: conversation_id
+          required: true
+          type: string
+        - description: "(optional) You can provide the X-API-KEY as 'api_key' query parameter"
+          in: query
+          name: api_key
+          type: string
+        - description: "(optional) You can provide the accept header as 'accept' query parameter"
+          in: query
+          name: accept
+          type: string
+      produces:
+        - "application/json"
+        - "application/xml"
+      responses:
+        "200":
+          description: "Conversation all response"
+          schema:
+            $ref: '#/definitions/ConversationAllResponse'
+        "400":
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        "401":
+          description: "Not authorized"
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        "500":
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+      security:
+        - ApiKeyAuth: [ ]
+      summary: "Retrieve all data for conversation"
+      tags:
+        - "raw"
+
+  /raw/v2/apps/{app_id}/surveys/{survey_id}/responses:
+    get:
+      tags:
+        - "raw"
+      summary: "Retrieve all survey responses"
+      description: "Retrieve all survey responses"
+      operationId: "getRawSurveyResponses"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "survey_id"
+          in: "path"
+          description: "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "order"
+          in: "query"
+          description: "the order by date (desc | asc)"
+          default: "asc"
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "The survey response id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "survey responses object"
+          schema:
+            $ref: "#/definitions/SurveyResponsesObject"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /raw/v2/apps/{app_id}/custom-attributes-keys:
+    get:
+      description: "Retrieve person and device custom data"
+      parameters:
+        - description: "The application ID in Mongo ID format (ex. 5e22085d5379215be800002b)"
+          in: path
+          name: app_id
+          required: true
+          type: string
+        - description: "(optional) You can provide the X-API-KEY as 'api_key' query parameter"
+          in: query
+          name: api_key
+          type: string
+        - description: "(optional) You can provide the accept header as 'accept' query parameter"
+          in: query
+          name: accept
+          type: string
+      produces:
+        - "application/json"
+        - "application/xml"
+      responses:
+        "200":
+          description: "Custom Attributes Keys Response"
+          schema:
+            $ref: '#/definitions/CustomAttributesKeysResponse'
+        "400":
+          description: "Bad request"
+          schema:
+            $ref: '#/definitions/ErrorBadRequestResponse'
+        "401":
+          description: "Not authorized"
+          schema:
+            $ref: '#/definitions/ErrorUnauthorizedResponse'
+        "500":
+          description: "Internal server error"
+          schema:
+            $ref: '#/definitions/ErrorInternalErrorResponse'
+      security:
+        - ApiKeyAuth: [ ]
+      summary: "Retrieve all custom attributes for application"
+      tags:
+        - "raw"
+
+  /experimental/v2/apps/{app_id}/surveys:
+    get:
+      tags:
+        - "experimental"
+      summary: "Retrieve surveys"
+      description: "Retrieve surveys"
+      operationId: "getBasicSingleSurveyResponses"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "survey responses object"
+          schema:
+            $ref: "#/definitions/BasicSurveyResponsesObject"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /experimental/v2/apps/{app_id}/surveys/{survey_id}:
+    get:
+      tags:
+        - "experimental"
+      summary: "Retrieve single survey response"
+      description: "Retrieve single survey response"
+      operationId: "getBasicSingleSurveyResponse"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "survey_id"
+          in: "path"
+          description: "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "single survey response object"
+          schema:
+            $ref: "#/definitions/SurveyStatsRow"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /experimental/v2/apps/{app_id}/notes:
+    get:
+      tags:
+        - "experimental"
+      summary: "Retrieve basic notes information"
+      description: "Retrieve single survey response"
+      operationId: "getBasicNotes"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: false
+          type: "string"
+        - name: "page_size"
+          in: "query"
+          description: "the page size number"
+          default: 100
+          required: false
+          type: "string"
+        - name: "starts_after"
+          in: "query"
+          description: "the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "notes responses object"
+          schema:
+            $ref: "#/definitions/BasicNotesResponsesObject"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /experimental/v2/apps/{app_id}/notes/{note_id}:
+    get:
+      tags:
+        - "experimental"
+      summary: "Retrieve single note"
+      description: "Retrieve single note"
+      operationId: "getBasicSingleNote"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "note_id"
+          in: "path"
+          description: "the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "single note response object"
+          schema:
+            $ref: "#/definitions/NotesStatsRow"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /experimental/v2/apps/{app_id}/reach/sdk:
+    get:
+      tags:
+        - "experimental"
+      summary: "Retrieve Native SDK version distribution"
+      description: "Retrieve SDK destribution"
+      operationId: "getSDKDistribution"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "sdk versions reponse object"
+          schema:
+            $ref: "#/definitions/ReachSDKResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+  /experimental/v2/apps/{app_id}/app-health/rating-dialog:
+    get:
+      tags:
+        - "experimental"
+      summary: "Retrieve Rating Dialogs (Request-To-Rate)"
+      description: "Retrieve Rating Dialogs"
+      operationId: "getRatingDialog"
+      produces:
+        - "application/json"
+        - "application/xml"
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - name: "app_id"
+          in: "path"
+          description: "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+          required: true
+          type: "string"
+        - name: "start_date"
+          in: "query"
+          description: "start date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "end_date"
+          in: "query"
+          description: "end date in format of YYYY-MM-DD"
+          required: true
+          type: "string"
+        - name: "api_key"
+          in: "query"
+          description: (optional) you can provide the X-API-KEY as 'api_key' query parameter
+          required: false
+          type: "string"
+        - name: "accept"
+          in: "query"
+          description: (optional) you can provide the accept header as 'accept' query parameter
+          required: false
+          type: "string"
+      responses:
+        "200":
+          description: "sdk versions reponse object"
+          schema:
+            $ref: "#/definitions/RatingDialogResponse"
+        "400":
+          description: "bad request"
+          schema:
+            $ref: "#/definitions/ErrorBadRequestResponse"
+        "401":
+          description: "not authorized"
+          schema:
+            $ref: "#/definitions/ErrorUnauthorizedResponse"
+        "500":
+          description: "internal server error"
+          schema:
+            $ref: "#/definitions/ErrorInternalErrorResponse"
+
+
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: X-API-KEY
+    in: header
+
+definitions:
+  RatingDialogResponse:
+    type: object
+    properties:
+      app_id:
+        type: string
+        description: apptentive's application identifier
+        example: 5e22085d5379215be800002b
+      start_date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      end_date:
+        type: string
+        description: the end date representation in YYYY-MM-DD format
+        example: 2022-06-17
+      rating_opportunities:
+        type: object
+        properties:
+          opportunites:
+            type: number
+            description: the number of rating opportunities
+            example: 236993
+          via_in_app_dialog:
+            type: number
+            description: opportunities via in app dialog
+            example: 236293
+          via_apptentive_rate_action:
+            type: number
+            description: opportunities via apptentive rate action
+            example: 700
+      in_app_rating_dialogs:
+        type: object
+        properties:
+          dialog_views:
+            type: number
+            description: the number of dialog rating views
+            example: 36076
+          not_shown:
+            type: number
+            description: the number of not shown rating views
+            example: 46346
+          alt_dialog:
+            type: number
+            description: alternative dialog number
+            example: 2523
+      apptentive_rating_dialogs:
+        type: object
+        properties:
+          rated:
+            type: number
+            description: the number of apptentive rated dialog views
+            example: 23423
+          remind_me:
+            type: number
+            description: the number of apptentive remind me later dialog views
+            example: 342
+          no_thanks:
+            type: number
+            description: the number of apptentive declined dialog views
+            example: 15
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/DialogTimeseries"
+
+  DialogTimeseries:
+    type: object
+    properties:
+      date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      dialog_views:
+        type: number
+        description: the amount of dialog views
+        example: 100
+      not_shown:
+        type: number
+        description: the amount of not shown views
+        example: 200
+      alt_dialog:
+        type: number
+        description: the amount of alt dialog views
+        example: 300
+      apptentive_rated:
+        type: number
+        description: the amount of apptentive rated views
+        example: 400
+      apptentive_remind_me:
+        type: number
+        description: the amount of apptentive remind me views
+        example: 500
+      apptentive_no_thanks:
+        type: number
+        description: the amount of apptentive no thanks views
+        example: 500
+
+  ReachSDKResponse:
+    type: object
+    properties:
+      app_id:
+        type: string
+        description: apptentive's application identifier
+        example: 5e22085d5379215be800002b
+      start_date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      end_date:
+        type: string
+        description: the end date representation in YYYY-MM-DD format
+        example: 2022-06-17
+      total_mau:
+        type: integer
+        description: number of total monthly active users
+        example: 41674096
+      sdk_versions:
+        $ref: "#/definitions/SDKVersionArray"
+
+  SDKVersionArray:
+    type: array
+    items:
+      $ref: "#/definitions/SDKVersionObject"
+
+  SDKVersionObject:
+    properties:
+      version:
+        type: string
+        description: the version of Apptentive SDK
+        example: 6.0.1
+      mau_unique:
+        type: number
+        description: number of unique devices associated with corresponding SDK version
+        example: 41255288
+      percentage_from_total:
+        type: number
+        description: the percentage from the total active users (up to 5 floating points)
+        example: 98.995
+
+
+  RollupResponseArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/RollupResponse"
+
+  RollupResponse:
+    type: "object"
+    properties:
+      app_id:
+        type: string
+        description: apptentive's application identifier
+        example: 5e22085d5379215be800002b
+      org_id:
+        type: string
+        description: Apptentive's customer/organization identifier
+        example: 5e22085d5379215be800002b
+      title:
+        type: string
+        description: The title of the application specified in the dashboard
+        example: App Demo
+      platform:
+        type: string
+        description: the application platform type
+        example: iOS, Android, or Web
+      store_id:
+        type: string
+        description: The identifier of the app on iTunes or Google Play
+        example: com.company.product (android)
+      love_ratio:
+        type: string
+        description: The percentage of consumers that love the experience
+        example: 11%
+      active_users:
+        type: integer
+        description: The number of distinct consumers seen within the last 30 days
+        example: 12419
+      current_rating:
+        type: integer
+        description: The current version's rating (iTunes only)
+        example: 4.78
+      all_rating:
+        type: integer
+        description: The app's all-time rating across versions
+        example: 4.78
+      interaction_count:
+        type: integer
+        description: The count of total Apptentive interaction events see within the timeframe
+        example: 404152
+
+  LovePercentResponse:
+    type: "object"
+    properties:
+      love_percentage:
+        type: integer
+        description: The percentage of consumers that love the experience
+        example: 78
+      love_dialog_responses_total:
+        type: integer
+        description: The number of total Love Dialog responses
+        example: 12300
+      tapped_love:
+        type: integer
+        description: The number of yes taps
+        example: 12000
+      tapped_no:
+        type: integer
+        description: The number of no taps
+        example: 250
+      tapped_other_respondents:
+        type: integer
+        description: The number of cancels (in Android) or non-responses
+        example: 10
+      love_timeseries:
+        $ref: "#/definitions/LoveTimeDataArray"
+
+  LoveTimeDataArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/LoveTimeData"
+    description: the list of love timeseries data
+
+  LoveTimeData:
+    type: "object"
+    properties:
+      date:
+        type: string
+        description: love timeseries date interval (format YYYY-MM-DD)
+        example: "2020-01-01"
+      tapped_total:
+        type: integer
+        description: the total amount of tapped responses
+        example: 20388
+      tapped_love:
+        type: integer
+        description: The number of yes taps
+        example: 15535
+      tapped_no:
+        type: integer
+        description: The number of no taps
+      other_respondents:
+        type: integer
+        description: The number of cancels (in Android) or non-responses
+
+  NotesDataResponse:
+    type: "object"
+    properties:
+      total:
+        type: integer
+        description: total number of launches
+        example: 130000
+      notes_timeseries:
+        $ref: "#/definitions/NotesTimeDataArray"
+
+  NotesTimeDataArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/NotesTimeData"
+    description: the list of notes timeseries data
+
+  NotesTimeData:
+    type: "object"
+    properties:
+      date:
+        type: string
+        description: love timeseries date interval (format YYYY-MM-DD)
+        example: "2020-01-01"
+      notes_launches:
+        type: integer
+        description: the number of notes launches
+        example: 120
+      notes_dismisses:
+        type: integer
+        description: the number of notes dismisses
+        example: 10
+      notes_cancels:
+        type: integer
+        description: the number of notes cancels
+        example: 89
+      notes_interactions:
+        type: integer
+        description: the number of notes interactions
+        example: 34
+
+  SurveyDataResponse:
+    type: "object"
+    properties:
+      total:
+        type: integer
+        example: 12300
+      survey_timeseries:
+        $ref: "#/definitions/SurveyTimeDataArray"
+
+  SurveyTimeDataArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/SurveyTimeData"
+    description: the list of survey timeseries data
+
+  SurveyTimeData:
+    type: "object"
+    properties:
+      date:
+        type: string
+        description: date representation in format 'YYYY-MM-DD'
+        example: 2022-01-01
+      survey_launches:
+        type: integer
+        description: survey launches count
+        example: 100
+      survey_cancels:
+        type: integer
+        description: survey cancels count
+        example: 9
+      survey_submits:
+        type: integer
+        description: survey submit count
+        example: 80
+      survey_question_responses:
+        type: integer
+        description: survey question responses count
+        example: 140
+
+  ActiveUserResponse:
+    type: "object"
+    properties:
+      app_id:
+        type: string
+        description: the app_id in hex representation
+        example: 48b5a6247bcb505bc8000020
+      start_date:
+        type: string
+        description: the start date representation in YYYY-MM-DD format
+        example: 2022-05-17
+      end_date:
+        type: string
+        description: the end date representation in YYYY-MM-DD format
+        example: 2022-06-17
+      granularity:
+        type: string
+        description: selected level of the granularity
+        example: all
+      data:
+        $ref: "#/definitions/ActiveUsersDataArray"
+
+  ActiveUsersDataArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/ActiveUserRow"
+
+  ActiveUserRow:
+    type: "object"
+    properties:
+      date:
+        type: string
+        description: the date in "YYYY-MM-DD" format
+        example: 2022-05-17
+      app_launches:
+        type: integer
+        description: the total amount of application launches
+        example: 4541305495
+      active_users:
+        type: integer
+        description: the distinct count of active users
+        example: 53282747
+
+  RatingsDataResponse:
+    type: "object"
+    properties:
+      app_id:
+        type: string
+        description: the hex id representation of the application
+        example: 5e22085d5379215be800002b
+      org_id:
+        type: string
+        description: the hex id representation of the organization
+        example: 5e22085d5379215be800002b
+      public_store_id:
+        type: string
+        description: id from the public store like iTunes or Android
+      platform:
+        type: string
+        description: platform identifier
+        example: android
+      ratings:
+        $ref: "#/definitions/RatingsDataArray"
+
+  RatingsDataArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/RatingsData"
+    description: the list of ratings data
+
+  RatingsData:
+    type: "object"
+    properties:
+      region:
+        type: string
+        description: application region
+        example: US
+      date:
+        type: string
+        description: the date in format of YYYY-MM-DD
+        example: 2020-01-01
+      all_ratings_average:
+        type: number
+        description: average ratings all-time
+        example: 5
+      all_ratings_count:
+        type: integer
+        description: all ratings count
+        example: 13841934
+      all_ratings:
+        $ref: "#/definitions/RatingRow"
+      all_ratings_percents:
+        $ref: "#/definitions/RatingRowFloat"
+      current_ratings_average:
+        type: number
+        description: current version average ratings (iOS only)
+        example: 5
+      current_ratings__count:
+        type: integer
+        description: current version ratings count (iOS only)
+        example: 519923
+      current_ratings:
+        $ref: "#/definitions/RatingRow"
+      version:
+        type: string
+        example: 6.16.15
+
+  RatingRow:
+    type: "object"
+    description: rating stats from 1 to 5 (iOS only)
+    properties:
+      1:
+        type: integer
+        description: total count for 1-ratings
+        example: 12014
+      2:
+        type: integer
+        description: total count of 2-ratings
+        example: 188
+      3:
+        type: integer
+        description: total count of 3-ratings
+        example: 1349
+      4:
+        type: integer
+        description: total count of 4-ratings
+        example: 4504
+      5:
+        type: integer
+        description: total count of 5-ratings
+        example: 89013
+
+  RatingRowFloat:
+    type: "object"
+    description: rating percentage stats from 1 to 5 (Android only)
+    properties:
+      1:
+        type: number
+        description: total percentage for 1-ratings
+        example: 71.149
+      2:
+        type: number
+        description: total percentage of 2-ratings
+        example: 9.053
+      3:
+        type: number
+        description: total percentage of 3-ratings
+        example: 1.614
+      4:
+        type: number
+        description: total percentage of 4-ratings
+        example: 3.386
+      5:
+        type: number
+        description: total percentage of 5-ratings
+        example: 14.529
+
+  RetentionResponse:
+    type: "object"
+    description: retention response
+    properties:
+      retention:
+        $ref: "#/definitions/RetentionResponseArray"
+
+  RetentionResponseArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/RetentionInternalArray"
+
+  RetentionInternalArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/RetentionInternalRow"
+
+  RetentionInternalRow:
+    type: "object"
+    properties:
+      bucket:
+        type: string
+        description: retention bucket in date format
+        example: "2020-07-01T00:00:00.000Z/2020-07-31T23:59:59.999Z"
+      lost:
+        type: number
+        description: lost number representation
+      origin:
+        type: string
+        description: origin bucket date format representation
+        example: 2020-07-01T00:00:00.000Z/2020-07-31T23:59:59.999Z
+      percentage:
+        type: number
+        description: retention percentage
+        example: 64.55
+      retained:
+        type: number
+        description: approx. quantative number of retained people
+        example: 11140470
+      timestamp:
+        type: string
+        description: time interval of data in timestamp representation
+        example: "2020-08-01T00:00:00.000Z"
+
+  FanSignalsCountsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/FanSignalsCountsRow"
+    description: the list of fan signals data
+
+  FanSignalsCountsRow:
+    type: "object"
+    properties:
+      date:
+        type: string
+      new_fans:
+        type: number
+        description: the amount of new fans
+        example: 1300
+      new_risk:
+        type: number
+        description: the amount of new risk
+        example: 355
+      repeat_fan:
+        type: number
+        description: the amount of repeated fans
+        example: 400
+      repeat_risk:
+        type: number
+        description: the amount of repeated risk
+        example: 33
+      shifted_to_fan:
+        type: number
+        description: the amount of people shifted to fan
+        example: 1313
+      shifted_to_risk:
+        type: number
+        description: the amount of people shifted to risk
+        example: 22
+      non_respondents:
+        type: number
+        description: the total of non respondents
+        example: 12349
+
+  NetFanScoreResponse:
+    type: "object"
+    properties:
+      net_fan_score:
+        type: string
+        description: the net fan score
+        example: 31
+      category_score:
+        type: string
+        description: the overall common net fan score for the app category, provided for the comparison
+        example: 25
+      category_name:
+        type: string
+        description: the app category
+        example: "Food & Drink | Education | ..."
+
+  EventStatsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/EventStatsRow"
+    description: the list of events
+
+  EventStatsRow:
+    type: "object"
+    properties:
+      display_name:
+        type: string
+        description: the text representation of the apptentive event
+        example: "CustomerStart"
+      event_type:
+        type: string
+        description: the type of event
+        example: "custom' | apptentive"
+      count:
+        type: number
+        description: the amount of time this event was triggered for particular date range
+        example: 114567
+      unique_customers:
+        type: number
+        description: the amount of unique customers that interacted with this event
+        example: 113555
+      last_seen_at:
+        type: string
+        description: last seen date in format of YYYY-MM-DD
+        example: "2020-01-01"
+      archived:
+        type: boolean
+        description: boolean value that determines whether this event is archived by apptentive customer
+
+  EventStatsTrend:
+    type: "object"
+    properties:
+      app_id:
+        type: string
+        description: the app_id
+        example: 614cb7b8a59ced06f8000055
+      display_name:
+        type: string
+        description: human friendly event name representation
+        example: app.launch
+      event_type:
+        type: string
+        description: type of the event
+        example: "custom | apptentive"
+      timeseries:
+        $ref: "#/definitions/EventStatsTrendTimeseries"
+
+  EventStatsTrendTimeseries:
+    type: "array"
+    items:
+      $ref: "#/definitions/EventStatsTimeseriesRow"
+    description: "event stats timeseries data"
+
+  EventStatsTimeseriesRow:
+    type: "object"
+    properties:
+      date:
+        type: string
+        description: date in 'YYYY-MM-DD' format
+        example: "2022-01-01"
+      event_count:
+        type: number
+        description: overall event count per day
+        example: 10183731
+      unique_customers:
+        type: number
+        description: number of unique users that triggered this particular event
+        example: 3438234
+
+  NotesStatsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/NotesStatsRow"
+    description: array of notes
+
+  NotesStatsRow:
+    type: "object"
+    properties:
+      name:
+        type: string
+        description: the name of the note
+        example: "Feedback Note"
+      title:
+        type: string
+        description: the title of the note
+        example: "Your Feedback is important"
+      body:
+        type: string
+        description: the description of the note
+        example: "We've updated our rewards system and would love your feedback"
+      start_time:
+        type: string
+        description: the date in format YYYY-MM-DD when note has officially launched, null if never started
+        example: "2020-01-01"
+      end_time:
+        type: string
+        description: the date in format YYYY-MM-DD when note has officially ended, null if never ended (still active)
+        example: "2020-01-01"
+      first_active_at:
+        type: string
+        description: the date in format YYYY-MM-DD when note was first active
+        example: "2020-01-01"
+      active:
+        type: boolean
+        description: boolean value determines if the note is active
+      views:
+        type: number
+        description: the total amount of views for the particular note
+        example: 11144
+      actions:
+        $ref: "#/definitions/NotesActionViewArray"
+
+  NotesActionViewArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/NotesActionView"
+    description: list of notes actions
+
+  NotesActionView:
+    type: "object"
+    properties:
+      count:
+        type: number
+        description: total interaction count for the particular action
+        example: 129405
+      interaction_type:
+        type: string
+        description: the type of the note action
+        example: Survey | cancel | dismiss | NavigateToLink
+      label:
+        type: string
+        description: the text label of the given note action
+        example: "No thanks"
+
+  SurveyStatsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/SurveyStatsRow"
+    description: the array of surveys with stats data
+
+  SurveyStatsRow:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: the hex id representation of the survey object
+        example: 614cb7b8a59ced06f8000055
+      active:
+        type: boolean
+        description: boolean value that identifies whether survey is currently active
+      created_at:
+        type: string
+        description: the survey created date in format 'YYYY-MM-DD'
+        example: "2020-01-01"
+      updated_at:
+        type: string
+        description: the survey updated date in format 'YYYY-MM-DD'
+        example: "2020-01-01"
+      start_time:
+        type: string
+        description: the date in format YYYY-MM-DD when survey has officially launched, null if never started
+        example: "2020-01-01"
+      end_time:
+        type: string
+        description: the date in format YYYY-MM-DD when survey has officially ended, null if never ended (still active)
+        example: "2020-01-01"
+      response_count:
+        type: number
+        description: the total response count
+        example: 115000
+      response_rate:
+        type: number
+        description: the percentage of total response rate for the given survey
+        example: 85.93
+      name:
+        type: string
+        description: the name of survey
+        example: My Survey
+      title:
+        type: string
+        description: the title representation of the survey (for customers)
+        example: Feature Usage Survey
+      description:
+        type: string
+        description: the description of the survey
+        example: Please let us know what do you think about our rewards
+      events:
+        type: array
+        description: events associated with the following surveys
+        items:
+          type: string
+          description: event name
+          example: bucket-award-open
+      required:
+        type: boolean
+        description: whether the Survey is required to be completed
+        example: true
+      multiple_responses:
+        type: boolean
+        description: whether the Survey allows the same person to complete it multiple times
+        example: false
+      show_success_message:
+        type: boolean
+        description: whether a success message is shown when the Survey is completed
+        example: true
+      success_message:
+        type: string
+        description: message displayed upon survey completion if show_success_message is true
+        example: Thank you for your input.
+      view_period:
+        type: number
+        description: minimum number of seconds between showing Survey
+        example: 86400
+      resp_max:
+        type: number
+        description: maximum number of responses allowed for the Survey
+        example: 1000
+      view_count:
+        type: number
+        description: maximum number of responses allowed for the Survey
+        example: 340
+      questions:
+        type: "array"
+        items:
+          $ref: "#/definitions/SurveyQuestions"
+        description: survey questions
+
+  SurveyQuestions:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: the id of the question
+        example: 614cb7b8a59ced06f8000055
+      type:
+        type: string
+        description: The type of Answer allowed (multichoice, multiselect, range, nps, or singleline which includes all open ended questions)
+        example: multichoice | multiselect | range | nps | singleline
+      value:
+        type: string
+        description: the question text
+        example: What would you like improved in the app?
+      required:
+        type: boolean
+        description: whether the Question is required
+        example: true
+      answer_choices:
+        type: "array"
+        items:
+          $ref: "#/definitions/SurveyQuestionAnswerChoice"
+      range_choice:
+        $ref: "#/definitions/SurveyRangeAnswerChoice"
+
+  SurveyQuestionAnswerChoice:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given Answer Choice
+        example: 614cb7b8a59ced06f8000055
+      value:
+        type: string
+        description: The text of the given Answer Choice
+        example: Award System
+
+  SurveyRangeAnswerChoice:
+    type: "object"
+    properties:
+      min:
+        type: number
+        description: the min of range
+        example: 1
+      max:
+        type: number
+        description: the max of range
+        example: 5
+      min_value:
+        type: string
+        description: the min string representation of range
+        example: "Low"
+      max_value:
+        type: string
+        description: the max string representaion of range
+        example: "High"
+
+
+  QuestionStatsArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/QuestionStatsRow"
+
+  QuestionStatsRow:
+    type: "object"
+    properties:
+      question_id:
+        type: string
+        description: the unique hex id question representation
+        example: 5c797cfe8cf56b0bf700007a
+      answers_count:
+        type: integer
+        description: the total amount of answers being received
+        example: 221455
+      answers:
+        type: array
+        items:
+          $ref: "#/definitions/AnswerCount"
+      other_choice:
+        type: boolean
+        description: boolean value that determines that this question is part of the other section choice
+        example: false
+      question:
+        type: string
+        description: the text body representation of the question
+        example: "What do you not like about the app?"
+      required:
+        type: boolean
+        description: boolean value that determines if the question if required to answer
+        example: true
+      type:
+        type: string
+        description: identifies the type of question
+        example: multiselect | singleline
+
+  SurveyResponses:
+    type: "object"
+    properties:
+      question:
+        type: string
+        description: the text representation of the survey question
+        example: "Why do you typically use the app?"
+      id:
+        type: string
+        description: unique hex id of the question object
+        example: 5e22085d5379215be800002b
+      type:
+        type: string
+        description: identifies the type of question
+        example: multiselect | singleline
+      required:
+        type: boolean
+        description: boolean value that determines if the question if required to answer
+        example: true
+      other_choice:
+        type: boolean
+        description: boolean value that determines that this question is part of the other section choice
+        example: false
+      has_more:
+        type: boolean
+        description: identifies if the question has more text reponses within provided request
+        example: true
+      page:
+        type: number
+        default: 0
+        description: the page of the text response
+        example: "0 | 1 | 2 | 3 | 4 ... "
+      limit:
+        type: integer
+        description: the amount of text responses provided within a page
+        example: 100
+      answer_count:
+        type: integer
+        description: the total amount of all answers per question
+        example: 134905
+      answers:
+        type: array
+        items:
+          $ref: "#/definitions/AnswerTextDate"
+
+  AnswerCount:
+    type: "object"
+    properties:
+      choice:
+        type: string
+        description: the text choice representation
+        example: "Check for rewards"
+      count:
+        type: integer
+        description: the amount of times that this text choice was choosen
+        example: 11890
+
+  AnswerTextDate:
+    type: "object"
+    properties:
+      created_at:
+        type: string
+        description: the date when the following choise was created
+        example: 2020-01-01
+      choice:
+        type: string
+        description: the text choice representation
+        example: "Most Likely!"
+
+  MessagesResponse:
+    type: "object"
+    properties:
+      messages:
+        $ref: "#/definitions/MessageArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 64115344869d1b289c000049
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+
+  MessageArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/Message"
+    description: list of conversation messages
+
+  Message:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: the hex id message object representation
+        example: 5e22085d5379215be800002b
+      body:
+        type: string
+        description: the text body representation of the message
+        example: "Hello, how are you?"
+      conversation_id:
+        type: string
+        description: the hex id of the conversation the following message belongs to
+        example: 5e22085d5379215be800002b
+      created_at:
+        type: string
+        description: the date when this message was created
+        example: "2018-04-09T21:18:22.677Z"
+      inbound:
+        type: boolean
+        description: A boolean value denoting whether the message originated from the end-consumer or as a response back to them.  inbound:true originated from the mobile app
+        example: true
+      hidden:
+        type: boolean
+        description: identify if this message is hidden
+        example: true
+      snapshot_data:
+        $ref: "#/definitions/MessageSnapshotData"
+      customer_tags:
+        type: array
+        items:
+          type: string
+          description: customer tags
+          example: hello-message
+      nonce:
+        type: string
+        description: a unique identifier provided by the Message creator to ensure that duplicate Messages are not accidentally created
+        example: C3FEEECB-D729-4508-B455-B04789D80142
+      client_created_at_utc_offset:
+        type: number
+        description: the offset, in seconds, from UTC that client_created_at represents
+        example: -14400
+      client_created_at:
+        type: number
+        description: The timestamp (with fractional seconds) that the Message was created at on the server. In UTC
+        example: 1667312180.5092402
+      automated:
+        type: boolean
+        description: whether the message is automated
+        example: false
+      attachments:
+        type: array
+        items:
+          $ref: "#/definitions/MessageAttachment"
+        description: message attachments (optional)
+      state:
+        type: string
+        description: the current state of the conversation. Can be open, waiting, or archived.
+        example: open
+      device_id:
+        type: string
+        description: the hex id of a device that initiates this message
+        example: 5e22085d5379215be800002b
+      person_id:
+        type: string
+        description: the hex id of a person that initiates this message
+        example: 5e22085d5379215be800002b
+
+  MessageAttachment:
+    type: object
+    properties:
+      size:
+        type: number
+        description: the size of the attachment
+        example: 128157
+      content_type:
+        type: string
+        description: the format of the attachment
+        example: image/jpeg
+      original_name:
+        type: string
+        description: the name of the attachment
+        example: Attachment 1
+      url:
+        type: string
+        description: direct source of the attachment
+        example: https://attachments.apptentive.com/.../2551487c60cb3618fa05728e
+
+  MessageSnapshotData:
+    type: object
+    properties:
+      timestamp:
+        type: number
+        description: snapshot data unix timestamp
+        example: 1667319932
+      app_release:
+        $ref: "#/definitions/SRAppRelease"
+      sender:
+        $ref: "#/definitions/MessageSender"
+
+  MessageSender:
+    type: object
+    properties:
+      id:
+        type: string
+        description: the person id of the sender
+        example: 5e22085d5379215be800002b
+      name:
+        type: string
+        description: sender name
+        example: John Doe
+      profile_photo:
+        type: string
+        description: direct source of the photo profile
+        example: https://secure.gravatar.com/avatar/..d7cab1a059d1c7b?d=mm&r=pg
+      email:
+        type: string
+        description: sender email
+        example: johndoe@mail.com
+      custom_data:
+        $ref: "#/definitions/CustomData"
+
+
+  DevicesResponse:
+    type: "object"
+    properties:
+      devices:
+        $ref: "#/definitions/DevicesRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 64115344869d1b289c000049
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+
+  DevicesRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/Device"
+    description: "the list of devices"
+
+  Device:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given Device
+        example: 74e4d31328687cb30401460f
+      os_name:
+        type: string
+        description: The operating system name
+        example: iPhone OS
+      os_version:
+        type: string
+        description: The version of the operating system
+        example: 7.1.2
+      os_build:
+        type: string
+        description: The operating system build identifier
+        example: 11D257
+      os_api_level:
+        type: string
+        description: The operating system API level (Android only)
+        example: 7.1.2
+      manufacturer:
+        type: string
+        description: The manufacturer of the Device
+        example: TSMC
+      model:
+        type: string
+        description: The model of the Device
+        example: iPhone 8 CDMA
+      board:
+        type: string
+        description: The name of the Device’s board
+        example: DeviceBoard
+      product:
+        type: string
+        description: The product name of the Device
+        example: iPhone 8
+      brand:
+        type: string
+        description: The brand of Device
+        example: smdk4210
+      cpu:
+        type: string
+        description: The CPU type within the Device
+        example: Apple A6
+      hardware:
+        type: string
+        description: The hardware identifier of the Device
+        example: iPhone10,1
+      carrier:
+        type: string
+        description: The primary network carrier for the Device
+        example: Verizon
+      current_carrier:
+        type: string
+        description: The currently active network carrier
+        example: Verizon
+      uuid:
+        type: string
+        description: the device uuid identificator
+        example: 77625c5d-c52c-401f-a7f2-99b29f0e6970
+      network_type:
+        type: string
+        description: The type of network that the Device is currently using
+        example: HSDPA
+      build_type:
+        type: string
+        description: The type of build for the Device
+        example: user
+      build_id:
+        type: string
+        description: The Device build identifier
+        example: GINGERBREAD
+      bootloader_version:
+        type: string
+        description: The version number of the bootloader for the Device
+        example: 1.0
+      radio_version:
+        type: string
+        description: The version number for the radio firmware on the Device
+        example: N7000BDCLSB
+      custom_data:
+        $ref: "#/definitions/CustomData"
+      local_language_code:
+        type: string
+        description: The two character language code for the Device’s current locale
+        example: US
+      local_country_code:
+        type: string
+        description: The two character country code for the Device’s current locale
+        example: en
+      locale_raw:
+        type: string
+        description: The raw locale string for the Device
+        example: en_US
+
+  PeopleResponse:
+    type: "object"
+    properties:
+      people:
+        $ref: "#/definitions/PersonRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+
+  PersonRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/Person"
+    description: "the list of devices"
+
+  Person:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given Person
+        example: 64115344869d1b289c000049
+      name:
+        type: string
+        description: The full (first and last) name of the Person
+        example: Bob
+      email:
+        type: string
+        description: The e-mail address of the Person
+        example: "bob@gmail.com"
+      custom_data:
+        $ref: "#/definitions/CustomData"
+      mparticle_id:
+        type: string
+        description: mparticle_id (if exists)
+        example: "PeopleResponse"
+
+  ConversationResponse:
+    type: "object"
+    properties:
+      conversations:
+        $ref: "#/definitions/ConversationRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example:  true
+
+  ConversationRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/Conversation"
+    description: "the list of conversations"
+
+  Conversation:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given Person
+        example: 5e22085d5379215be800002b
+      state:
+        type: string
+        description: conversation state
+        example: new
+      person_id:
+        type: string
+        description: The person id that is associated with following conversation id
+        example: 5e22085d5379215be800002b
+      device_id:
+        type: string
+        description: The device id that is associated with following conversation id
+        example: 5e22085d5379215be800002b
+      app_release:
+        $ref: "#/definitions/CustomData"
+
+  BasicSurveyResponsesObject:
+    type: "object"
+    properties:
+      surveys:
+        $ref: "#/definitions/BasicSurveyResponsesRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+
+  BasicSurveyResponsesRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/BasicSurveyResponse"
+    description: "the list of surveys"
+
+  BasicSurveyResponse:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given survey id
+        example: 5e22085d5379215be800002b
+      active:
+        type: boolean
+        description: the state of survey (active or not active)
+        example: true
+      created_at:
+        type: string
+        description: survey created date
+        example: 2014-09-24T21:29:07.489Z
+      name:
+        type: string
+        description: the name of survey
+        example: My Survey
+      title:
+        type: string
+        description: the title representation of the survey (for customers)
+        example: Feature Usage Survey
+      description:
+        type: string
+        description: the description of the survey
+        example: Please let us know what do you think about our rewards
+
+  BasicNotesResponsesObject:
+    type: "object"
+    properties:
+      notes:
+        $ref: "#/definitions/BasicNotesResponsesRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+
+  BasicNotesResponsesRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/BasicNoteResponse"
+    description: "the list of notes"
+
+  BasicNoteResponse:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given survey id
+        example: 5e22085d5379215be800002b
+      active:
+        type: boolean
+        description: the state of note (active or not active)
+        example: true
+      created_at:
+        type: string
+        description: note created date
+        example: 2014-09-24T21:29:07.489Z
+      name:
+        type: string
+        description: the name of note
+        example: My Note
+      title:
+        type: string
+        description: the title representation of the note
+        example: Feature Usage Note
+      body:
+        type: string
+        description: the description of the note
+        example: Please let us know what do you think about our rewards
+
+  SurveyResponsesObject:
+    type: "object"
+    properties:
+      responses:
+        $ref: "#/definitions/SurveyResponsesRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 6e22085d5379215be800002b
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 250
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+
+  SurveyResponsesRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/SurveyResponse"
+    description: "the list of survey responses"
+
+  SurveyResponse:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given survey response
+        example: 5e22085d5379215be800002b
+      survey_id:
+        type: string
+        description: The survey id of the given survey response
+        example: 6e22085d5379215be800002b
+      created_at:
+        type: string
+        description: survey response created date
+        example: "2020-09-24T00:20:10"
+      conversation_id:
+        type: string
+        description: The conversation id of the give survey response
+        example: 7e22085d5379215be800002b
+      answers:
+        $ref: "#/definitions/SRAnswersRowArray"
+      snapshot_data:
+        $ref: "#/definitions/SnapshotData"
+
+  SnapshotData:
+    type: "object"
+    properties:
+      device:
+        $ref: "#/definitions/SRDevice"
+      person:
+        $ref: "#/definitions/SRPerson"
+      app_release:
+        $ref: "#/definitions/SRAppRelease"
+
+
+  SRDevice:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: the hex id of the device
+        example: 55fbe2e775bf3c760b1000bc
+      carrier:
+        type: string
+        description: The primary network carrier for the Device
+        example: Verizon
+      custom_data:
+        $ref: "#/definitions/CustomData"
+      manufacturer:
+        type: string
+        description: device manufacturer
+        example: Samsung
+      model:
+        type: string
+        description: device model
+        example: S22
+      os_api_level:
+        type: string
+        description: api level of the operating system
+        example: 3.5.9
+      os_name:
+        type: string
+        description: Operating System label
+        example: Android
+      os_version:
+        type: string
+        description: Operating System version
+        example: 5.2.0
+
+
+  SRPerson:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: the hex id of the person
+        example: 95fbe2e775bf3c760b1000bc
+      custom_data:
+        $ref: "#/definitions/CustomData"
+      email:
+        type: string
+        description: person email
+        example: foo@bar.com
+      facebook_id:
+        type: string
+        description: the facebook id
+        example: 1184928249824
+      mparticle_id:
+        type: string
+        description: the mParticle id
+        example: -29482958295729572
+      name:
+        type: string
+        description: person name
+        example: Jack Daniels
+
+  SRAppRelease:
+    type: "object"
+    properties:
+      cf_bundle_version:
+        type: string
+        description: the build version number of the bundle
+        example: 78
+      cf_bundle_short_version_string:
+        type: string
+        description: the short version of the build version
+        example: "4.5.11"
+      sdk_version:
+        type: string
+        description: sdk version
+        example: "4.5.11"
+      sdk_platform:
+        type: string
+        description: sdk platform type
+        example: iOS
+      sdk_distribution:
+        type: string
+        description: the sdk distribution
+        example: source
+      sdk_distribution_version:
+        type: string
+        description: the sdk distribution version
+        example: "4.5.11"
+
+  SRAnswersRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/SurveyAnswerResponse"
+    description: "the list of survey response answers"
+
+  SurveyAnswerResponse:
+    type: "object"
+    properties:
+      question:
+        $ref: "#/definitions/Question"
+      answer:
+        $ref: "#/definitions/Answer"
+
+  Question:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: The id of the given survey response question
+        example: 5e22085d5379215be800002b
+      value:
+        type: string
+        description: The survey question value
+        example: "Choose one option"
+      type:
+        type: string
+        description: the type of the question
+        example: 'multichoice | multiselect | range | nps | singleline'
+
+  Answer:
+    type: "object"
+    properties:
+      value:
+        type: string
+        description: selected answer value (could be an array of strings)
+        example: "'yes' OR ['Red', 'Blue']"
+
+  ReviewResponse:
+    type: "object"
+    properties:
+      reviews:
+        $ref: "#/definitions/ReviewRowArray"
+      ends_with:
+        type: string
+        description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+        example: 5afc45d9888ccc95597dscccasc
+      page_size:
+        type: number
+        description: the amount of requested results per request
+        example: 100
+      has_more:
+        type: boolean
+        description: true when additional objects are available for retrieval; false otherwise.
+        example: true
+
+  ReviewRowArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/Review"
+    description: "the list of reviews"
+
+  Review:
+    type: "object"
+    properties:
+      review_id:
+        type: string
+        description: The id of the given review
+        example: 18178175
+      title:
+        type: string
+        description: the review title
+        example: Hello, developers!
+      content:
+        type: string
+        description: the body of the review
+        example: I like your app, thank you!
+      rating:
+        type: number
+        description: the rating 5-score mark
+        example: from 1 to 5
+      country_id:
+        type: string
+        description: the region identificator, can be used as a filter
+        example: US or L:en
+      created_at:
+        type: string
+        description: the review created at date
+        example: 18178175
+      app_version:
+        type: string
+        description: the app version of the review
+        example: 5.8.7
+      store:
+        type: string
+        description: store identifactor
+        example: android or itunes
+      store_app_id:
+        type: string
+        description: public store identifactor
+        example: 18178175 (iTunes) or com.something.app (android)
+      sentiment:
+        type: string
+        description: our sentiment interpretation
+        example: negative | neutral | positive
+      customer_tags:
+        type: array
+        items:
+          type: string
+          description: customer tags
+          example: customer-satisfaction
+
+  InsightsSurveyResponse:
+    type: "object"
+    description: insights survey response
+    properties:
+      page:
+        $ref: "#/definitions/PageSurveyResponse"
+
+  PageSurveyResponse:
+    type: "object"
+    description: insigts survey page
+    properties:
+      per:
+        type: number
+        description: page size limit
+        example: 50
+      page:
+        type: number
+        description: page number
+        example: 0
+      total:
+        type: number
+        description: the total amount of survey responses
+        example: 808
+      data:
+        type: array
+        description: "survey responses"
+        items:
+          $ref: "#/definitions/ExtendedSurveyResponse"
+
+  ExtendedSurveyResponse:
+    type: "object"
+    description: insights survey response
+    properties:
+      app_id:
+        type: string
+        description: the application id representation
+        example: "55fbe2e775bf3c760b1000bc"
+      content:
+        type: string
+        description: survey response content
+        example: "trying to use this app every day"
+      conversation_id:
+        type: string
+        description: the conversation id
+        example: "855be2e775bf3c760b1000bc"
+      created_on_date:
+        type: string
+        description: the date when survey response was created
+        example: "2022-07-14T05:51:50"
+      customer_tags:
+        type: string
+        description: customer tags
+        example: "happy-customer"
+      device_carrier:
+        type: string
+        description: device carrier
+        example: "Verizon"
+      device_custom_data:
+        type: "array"
+        items:
+          $ref: "#/definitions/CustomData"
+      device_id:
+        type: string
+        description: the device id
+        example: 855be2e775bf3c760b1000bc
+      device_model:
+        type: string
+        description: the device model
+        example: iPhone 13 Pro Max
+      device_os_name:
+        type: string
+        description: the device OS name
+        example: iOS
+      device_os_version:
+        type: string
+        description: the device OS version
+        example: 15.5
+      id:
+        type: string
+        description: the survey response id
+        example: 855be2e775bf3c760b1000bc
+      organization_id:
+        type: string
+        description: the survey response organization id
+        example: 855be2e775bf3c760b1000bc
+      person_custom_data:
+        type: "array"
+        items:
+          $ref: "#/definitions/CustomData"
+      person_email:
+        type: string
+        description: person email (if exists)
+        example: bob@mail.com
+      person_id:
+        type: string
+        description: the person id
+        example: 855be2e775bf3c760b1000bc
+      person_name:
+        type: string
+        description: person name (if exists)
+        example: Bob
+      question_id:
+        type: string
+        description: the question id
+        example: 855be2e775bf3c760b1000bc
+      question_type:
+        type: string
+        description: question type
+        example: singleline
+      question_text:
+        type: string
+        description: the question text
+        example: "How often do you use our app?"
+      sentiment_compound:
+        type: number
+        description: the sentiment value (negative <1000, neutral 0..600, positive > 600)
+        example: 999.8
+      survey_created_on_date:
+        type: string
+        description: the date when survey was created
+        example: 2021-09-09T00:40:55
+      survey_description:
+        type: string
+        description: the survey description
+        example: "We want to improve the app"
+      survey_id:
+        type: string
+        description: the survey id
+        example: 61395817bb22cf3cee000026
+      survey_name:
+        type: string
+        description: the survey name
+        example: Share your thoughts
+      survey_response_id:
+        type: string
+        description: the survey response id
+        example: 855be2e775bf3c760b1000bc
+      survey_title:
+        type: string
+        description: the survey title
+        example: Our Love Dialog Survey 11/2021
+
+  CustomData:
+    type: "object"
+    description: customer specific data
+    properties:
+      key:
+        type: string
+        description: custom key definition
+        example: CustomKey
+      value:
+        type: string
+        description: custom value definition
+        example: CustomValue
+
+  GetGDPRStatusResponse:
+    type: "object"
+    description: GDPR/CCPA request status
+    properties:
+      controller_id:
+        type: string
+        description: name of organization triggered the request
+        example: "Apptentive Engineering"
+      expected_completion_time:
+        type: string
+        description: expected completion time of the gdpr/ccpa request
+        example: "1984-11-01T15:00:01Z"
+      subject_request_id:
+        type: string
+        description: id of the request
+        example: "a7551968-d5d6-44b2-9831-815ac9017798"
+      request_status:
+        type: string
+        description: current status of the request progress
+        example: "completed"
+      api_version:
+        type: string
+        description: version string representing the desired version of the OpenDSR API
+        example: "2.0"
+      results_url:
+        type: string
+        description: the URL of results for “access” request
+        example: "https://host/file_to_download.zip"
+
+  POSTGDPRResponse:
+    type: "object"
+    description: GDPR/CCPA create request answer
+    properties:
+      controller_id:
+        type: string
+        description: name of organization triggered the request
+        example: "Apptentive Engineering"
+      expected_completion_time:
+        type: string
+        description: expected completion time of the gdpr/ccpa request
+        example: "1984-11-01T15:00:01Z"
+      received_time:
+        type: string
+        description: time when the request was submitted
+        example: "1984-10-01T15:00:01Z"
+      subject_request_id:
+        type: string
+        description: id of the request
+        example: "a7551968-d5d6-44b2-9831-815ac9017798"
+      encoded_request:
+        type: string
+        description: base64 encoded request body
+        example: "<BASE64 ENCODED REQUEST>"
+
+  POSTGDPRRequest:
+    type: "object"
+    description: GDPR/CCPA create request payload
+    properties:
+      regulation:
+        type: string
+        description: string value representing the regulation that this request is covered by
+        example: "gdpr | ccpa"
+      subject_request_type:
+        type: string
+        description: the type of GDPR/CCPA request
+        example: "erasure | access"
+      api_version:
+        type: string
+        description: version string representing the desired version of the OpenDSR API
+        example: "2.0"
+      extensions:
+        type: object
+        minProperties: 1
+        maxProperties: 1
+        description: processor-id-keyed object representing processor-specific elements in the request. In current implementation extensions contain all objects requested for processing. It should contain an internal object called "apptentive.com"
+        additionalProperties:
+          $ref: '#/definitions/GDPRExtension'
+        example:
+          apptentive.com: {
+            org_id: "{org_id}",
+            identity_type: "email | cid",
+            identity_value: ["dart@apptentive.com", "luke@apptentive.com", "uuid", "objectID", "some_string"],
+            created_by: "Dart Vader"
+          }
+  ConversationAll:
+    properties:
+      app_id:
+        type: string
+      app_release:
+        $ref: '#/definitions/model.ConversationAllAppRelease'
+      created_at:
+        type: string
+      device_id:
+        type: string
+      id:
+        type: string
+      person_id:
+        type: string
+      state:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  ConversationAllAppRelease:
+    properties:
+      app_store:
+        type: string
+      build_number:
+        type: string
+      cf_bundle_short_version_string:
+        type: string
+      cf_bundle_version:
+        type: string
+      created_at:
+        type: string
+      debug:
+        type: boolean
+      deployment_target:
+        type: string
+      has_app_store_receipt:
+        type: boolean
+      id:
+        type: string
+      identifier:
+        type: string
+      inheriting_styles:
+        type: boolean
+      min_sdk_version:
+        type: integer
+      overriding_styles:
+        type: boolean
+      sdk_author_email:
+        type: string
+      sdk_author_name:
+        type: string
+      sdk_distribution:
+        type: string
+      sdk_distribution_version:
+        type: string
+      sdk_platform:
+        type: string
+      sdk_programming_language:
+        type: string
+      sdk_version:
+        type: string
+      target_sdk_version:
+        type: integer
+      type:
+        type: string
+      updated_at:
+        type: string
+      version:
+        type: string
+      version_code:
+        type: integer
+      version_name:
+        type: string
+    type: object
+  ConversationAllDevice:
+    properties:
+      advertiser_id:
+        type: string
+      board:
+        type: string
+      bootloader_version:
+        type: string
+      brand:
+        type: string
+      browser_height:
+        type: integer
+      browser_languages:
+        items:
+          type: string
+        type: array
+      browser_type:
+        type: string
+      browser_vendor:
+        type: string
+      browser_version:
+        type: string
+      browser_width:
+        type: integer
+      build_id:
+        type: string
+      build_type:
+        type: string
+      carrier:
+        type: string
+      content_size_category:
+        type: string
+      cookie_enabled:
+        type: boolean
+      cpu:
+        type: string
+      created_at:
+        type: string
+      current_carrier:
+        type: string
+      custom_data: { }
+      device:
+        type: string
+      hardware:
+        type: string
+      id:
+        type: string
+      locale_country_code:
+        type: string
+      locale_language_code:
+        type: string
+      locale_raw:
+        type: string
+      manufacturer:
+        type: string
+      model:
+        type: string
+      network_type:
+        type: string
+      orientation_angle:
+        type: integer
+      orientation_type:
+        type: string
+      os_api_level: { }
+      os_build:
+        type: string
+      os_name:
+        type: string
+      os_version:
+        type: string
+      product:
+        type: string
+      radio_version:
+        type: string
+      screen_height:
+        type: integer
+      screen_width:
+        type: integer
+      updated_at:
+        type: string
+      user_agent:
+        type: string
+      utc_offset:
+        type: integer
+      uuid:
+        type: string
+    type: object
+  ConversationAllPerson:
+    properties:
+      address:
+        type: string
+      birthday:
+        type: string
+      created_at:
+        type: string
+      custom_data: { }
+      email:
+        type: string
+      id:
+        type: string
+      mparticle_id:
+        type: string
+      name:
+        type: string
+      phone_number:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  ConversationAllResponse:
+    properties:
+      conversation:
+        $ref: '#/definitions/ConversationAll'
+      conversation_id:
+        type: string
+      device:
+        $ref: '#/definitions/ConversationAllDevice'
+      device_id:
+        type: string
+      person:
+        $ref: '#/definitions/ConversationAllPerson'
+      person_id:
+        type: string
+    type: object
+  CustomAttributesKeysResponse:
+    properties:
+      device_keys:
+        additionalProperties:
+          $ref: '#/definitions/TypeValue'
+        type: object
+      person_keys:
+        additionalProperties:
+          $ref: '#/definitions/TypeValue'
+        type: object
+    type: object
+  TypeValue:
+    properties:
+      description:
+        type: string
+      is_visible:
+        type: boolean
+      type:
+        type: string
+    type: object
+
+  GDPRExtension:
+    type: "object"
+    description: contain all objects requested for processing
+    properties:
+      org_id:
+        type: string
+        description: id of the organization fulfilled the gdpr request
+        example: "{org_id}"
+      identity_type:
+        type: string
+        description: type of identity
+        example: "email"
+      identity_value:
+        type: array
+        items:
+          type: string
+        description: the array list of values for gdpr/ccpa request
+        example: ["dart@apptentive.com", "luke@apptentive.com"]
+      created_by:
+        type: string
+        description: name of requester
+        example: "Dart Vader"
+
+  ErrorBadRequestResponse:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+        description: "the root cause in text representation"
+        example: "some params are missing"
+
+  ErrorNotFoundResponse:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+        description: "the root cause in text representation"
+        example: "request not found"
+
+  ErrorUnauthorizedResponse:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+        description: "the root cause in text representation"
+        example: "not authorized"
+
+  ErrorInternalErrorResponse:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+        description: "the root cause in text representation"
+        example: "unable to get the data - please contact the support team"
+
+  InfoResponse:
+    type: "object"
+    properties:
+      access:
+        $ref: "#/definitions/AccessInfo"
+      cache:
+        $ref: "#/definitions/CacheInfo"
+
+
+  AccessInfo:
+    type: "object"
+    properties:
+      raw_endpoints:
+        type: array
+        items:
+          type:
+            string
+          example: data.apptentive.com/...
+      metrics_endpoints:
+        type: array
+        items:
+          type:
+            string
+          example: data.apptentive.com/...
+
+  CacheInfo:
+    type: "object"
+    properties:
+      rate:
+        type: string
+        description: how many requests is elligble per 5 minutes
+        example: 100
+      limit:
+        type: string
+        description: how many requests are remaining before reset
+        example: 99
+      reset:
+        type: string
+        description: date when the limit will be reset
+        example: 2022-09-16 02:20 UTC

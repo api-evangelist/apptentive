@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of /.well-known/ on API + website hosts
+note: No .well-known discovery documents were served (all probes returned 400/403). Recorded for auditability; no WellKnown pointer is wired because nothing is genuinely published.
+hosts:
+  - host: https://data.apptentive.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 400
+      - path: /.well-known/openid-configuration
+        status: 400
+      - path: /.well-known/oauth-authorization-server
+        status: 400
+      - path: /.well-known/api-catalog
+        status: 400
+      - path: /.well-known/ai-plugin.json
+        status: 400
+  - host: https://apptentive.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403

@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Apptentive (Alchemer Digital) Data API
+  version: 1.0.0
+extends: openapi/apptentive-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: true
+      x-apievangelist-rate-limit: 100 requests / 5 minutes per IP
+      x-apievangelist-status-page: https://status.apptentive.com
+      x-apievangelist-docs: https://help.alchemer.com/help/alchemer-digital-api
+      x-apievangelist-vendor: Alchemer (formerly Apptentive)
+  - target: $.info
+    update:
+      contact:
+        name: Alchemer Digital Support
+        url: https://help.alchemer.com/help/alchemer-digital-api
+  - target: $.securityDefinitions.ApiKeyAuth
+    update:
+      description: >-
+        API key issued and scoped from the Alchemer Digital dashboard. Pass as the X-API-KEY
+        header, or optionally as the api_key query parameter.

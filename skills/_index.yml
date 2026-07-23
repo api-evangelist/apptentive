@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/apptentive-openapi-original.yml
+skills:
+  - file: apptentive-export-app-metrics.md
+    name: Export Apptentive app metrics
+    api: openapi/apptentive-openapi-original.yml
+    operations: [getAllApps, getActiveUsersData, getRatings, fetchReviews, getRetention, getNFSData]
+  - file: apptentive-export-survey-responses.md
+    name: Export Apptentive survey responses
+    api: openapi/apptentive-openapi-original.yml
+    operations: [getSurveyStats, getOneSurveyStats, getSurveyResponses, getRawSurveyResponses]
+  - file: apptentive-gdpr-ccpa-request.md
+    name: Submit and track an Apptentive GDPR/CCPA request
+    api: openapi/apptentive-openapi-original.yml
+    operations: [postGDPRRequest, getGDPRRequest]

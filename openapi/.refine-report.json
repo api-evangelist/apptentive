@@ -1,0 +1,22 @@
+{
+  "provider": "apptentive",
+  "sources": [
+    "apptentive-experimental-api-openapi.yml",
+    "apptentive-info-api-openapi.yml",
+    "apptentive-metrics-api-openapi.yml",
+    "apptentive-raw-api-openapi.yml"
+  ],
+  "outputs": [
+    "apptentive-experimental-api-openapi.yml",
+    "apptentive-info-api-openapi.yml",
+    "apptentive-metrics-api-openapi.yml",
+    "apptentive-raw-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "apptentive-raw-api-openapi.yml: dangling $ref: #/definitions/model.ConversationAllAppRelease"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

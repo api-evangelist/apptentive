@@ -1,0 +1,380 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/apptentive-openapi-original.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 36
+  by_action_class:
+    connected: 35
+    acting: 1
+  by_consequence:
+    read: 35
+    write: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /info
+  method: get
+  operationId: showDataEndpoints
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps
+  method: get
+  operationId: getAllApps
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/app-health/active-users
+  method: get
+  operationId: getActiveUsersData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/app-health/interactions/notes
+  method: get
+  operationId: getNotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/app-health/interactions/surveys
+  method: get
+  operationId: getSurveys
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/app-health/love-percent
+  method: get
+  operationId: getLovePercentData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/app-health/ratings
+  method: get
+  operationId: getRatings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/app-health/retention
+  method: get
+  operationId: getRetention
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/fan-signals/counts
+  method: get
+  operationId: getFSCounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/fan-signals/net-fan-score
+  method: get
+  operationId: getNFSData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/reviews
+  method: get
+  operationId: fetchReviews
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/stats/events
+  method: get
+  operationId: getEventStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/stats/event-trend
+  method: get
+  operationId: getEventTrendStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/stats/notes
+  method: get
+  operationId: getNotesStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/stats/surveys
+  method: get
+  operationId: getSurveyStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/survey/{survey_id}/stats
+  method: get
+  operationId: getOneSurveyStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/survey/{survey_id}/question/{question_id}/responses
+  method: get
+  operationId: getSurveyResponses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/survey/insights
+  method: get
+  operationId: fetch responses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /metrics/v2/apps/{app_id}/gdpr-ccpa/requests
+  method: post
+  operationId: postGDPRRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /metrics/v2/apps/{app_id}/gdpr-ccpa/requests/{request_id}
+  method: get
+  operationId: getGDPRRequest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/messages
+  method: get
+  operationId: getMessages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/devices
+  method: get
+  operationId: getDevices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/devices/{device_id}
+  method: get
+  operationId: getSingleDevice
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/people
+  method: get
+  operationId: getPeople
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/people/{person_id}
+  method: get
+  operationId: getSinglePerson
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/conversations
+  method: get
+  operationId: getConversations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/conversations/{conversation_id}
+  method: get
+  operationId: getSingleConversation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/conversation-all-data/{conversation_id}
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/surveys/{survey_id}/responses
+  method: get
+  operationId: getRawSurveyResponses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /raw/v2/apps/{app_id}/custom-attributes-keys
+  method: get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /experimental/v2/apps/{app_id}/surveys
+  method: get
+  operationId: getBasicSingleSurveyResponses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /experimental/v2/apps/{app_id}/surveys/{survey_id}
+  method: get
+  operationId: getBasicSingleSurveyResponse
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /experimental/v2/apps/{app_id}/notes
+  method: get
+  operationId: getBasicNotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /experimental/v2/apps/{app_id}/notes/{note_id}
+  method: get
+  operationId: getBasicSingleNote
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /experimental/v2/apps/{app_id}/reach/sdk
+  method: get
+  operationId: getSDKDistribution
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /experimental/v2/apps/{app_id}/app-health/rating-dialog
+  method: get
+  operationId: getRatingDialog
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -1,0 +1,23 @@
+# Apptentive (Alchemer Digital) Data API
+
+> Apptentive, now Alchemer Mobile / Alchemer Digital, is a mobile customer engagement and in-app feedback platform. The public Data API (`https://data.apptentive.com`) provides read-only export and analytics access to app metrics, ratings, reviews, surveys, notes, Fan Signals, and raw people/device/conversation/message data, plus a GDPR/CCPA request endpoint. Authentication is via an `X-API-KEY` header issued from the Alchemer Digital dashboard. Rate limit: 100 requests per 5 minutes per IP.
+
+## API
+- [Apptentive Data API (Swagger 2.0)](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/openapi/apptentive-openapi-original.yml): metrics, raw, experimental, and info endpoints. Base host data.apptentive.com.
+
+## Specs & Artifacts
+- [OpenAPI/Swagger](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/openapi/apptentive-openapi-original.yml)
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/authentication/apptentive-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/conventions/apptentive-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/errors/apptentive-problem-types.yml)
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/rate-limits/apptentive-rate-limits.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/lifecycle/apptentive-lifecycle.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/data-model/apptentive-data-model.yml)
+- [Packages / SDKs](https://raw.githubusercontent.com/api-evangelist/apptentive/refs/heads/main/packages/apptentive-packages.yml)
+
+## Docs
+- [Alchemer Digital API docs](https://help.alchemer.com/help/alchemer-digital-api)
+- [GitHub org (SDKs)](https://github.com/apptentive)
+- [Security & compliance](https://www.alchemer.com/security/)
+- [Status page](https://status.apptentive.com)
+- [Terms / Master Service Agreement](https://www.alchemer.com/apptentive-master-service-agreement/)

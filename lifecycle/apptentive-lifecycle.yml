@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://help.alchemer.com/help/alchemer-digital-api
+versioning:
+  scheme: uri-path
+  current: v2
+  note: Paths are namespaced /metrics/v2, /raw/v2, /experimental/v2. An "experimental" tag marks endpoints that may change.
+status_page: https://status.apptentive.com
+alt_status_page: https://status.alchemer.com
+sla:
+  note: Enterprise SLA governed by the Apptentive/Alchemer Master Service Agreement.
+  url: https://www.alchemer.com/apptentive-master-service-agreement/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation/Sunset-header policy found for the Data API.
+deprecated_operations: []
+experimental_operations:
+  - openapi/apptentive-openapi-original.yml#getBasicSingleSurveyResponses
+  - openapi/apptentive-openapi-original.yml#getBasicSingleSurveyResponse
+  - openapi/apptentive-openapi-original.yml#getBasicNotes
+  - openapi/apptentive-openapi-original.yml#getBasicSingleNote
+  - openapi/apptentive-openapi-original.yml#getSDKDistribution
+  - openapi/apptentive-openapi-original.yml#getRatingDialog
