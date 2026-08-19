@@ -1,0 +1,276 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "public-api-service experimental API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "experimental",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve surveys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/v2/apps/:app_id/surveys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve surveys"
+        },
+        {
+          "info": {
+            "name": "Retrieve single survey response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/v2/apps/:app_id/surveys/:survey_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "path",
+                "description": "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve single survey response"
+        },
+        {
+          "info": {
+            "name": "Retrieve basic notes information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/v2/apps/:app_id/notes",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve single survey response"
+        },
+        {
+          "info": {
+            "name": "Retrieve single note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/v2/apps/:app_id/notes/:note_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve single note"
+        },
+        {
+          "info": {
+            "name": "Retrieve Native SDK version distribution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/v2/apps/:app_id/reach/sdk",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve SDK destribution"
+        },
+        {
+          "info": {
+            "name": "Retrieve Rating Dialogs (Request-To-Rate)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/experimental/v2/apps/:app_id/app-health/rating-dialog",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve Rating Dialogs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,436 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "public-api-service experimental raw API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "raw",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/messages",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "The message id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve all messages"
+        },
+        {
+          "info": {
+            "name": "Retrieve all devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/devices",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "The device id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve all devices"
+        },
+        {
+          "info": {
+            "name": "Retrieve single device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/devices/:device_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "device_id",
+                "value": "",
+                "type": "path",
+                "description": "the device id in mongo format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve single device"
+        },
+        {
+          "info": {
+            "name": "Retrieve all people",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/people",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "The people id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve all people"
+        },
+        {
+          "info": {
+            "name": "Retrieve single person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/people/:person_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "path",
+                "description": "the person id in mongo format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve single person"
+        },
+        {
+          "info": {
+            "name": "Retrieve all conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/conversations",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "The conversation id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve all conversations"
+        },
+        {
+          "info": {
+            "name": "Retrieve single person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/conversations/:conversation_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "the conversation id in mongo format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve single person"
+        },
+        {
+          "info": {
+            "name": "Retrieve all data for conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/conversation-all-data/:conversation_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID in Mongo ID format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path",
+                "description": "The conversation ID in Mongo format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) You can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) You can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve conversation data"
+        },
+        {
+          "info": {
+            "name": "Retrieve all survey responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/surveys/:survey_id/responses",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "path",
+                "description": "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "the order by date (desc | asc)"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "The survey response id from the ‘ends_with’ field, for pagination (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve all survey responses"
+        },
+        {
+          "info": {
+            "name": "Retrieve all custom attributes for application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/raw/v2/apps/:app_id/custom-attributes-keys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID in Mongo ID format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) You can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) You can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retrieve person and device custom data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,841 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "public-api-service experimental metrics API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Available Apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Expose All Apps Assosiated with the JWT Token"
+        },
+        {
+          "info": {
+            "name": "Active Users Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/app-health/active-users",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "granularity period: [ day | week | month | quarter | year | all ]"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Active Users Data"
+        },
+        {
+          "info": {
+            "name": "Get Notes Timeseries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/app-health/interactions/notes",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Get Notes Timeseries"
+        },
+        {
+          "info": {
+            "name": "Get Surveys Timeseries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/app-health/interactions/surveys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Get Surveys Timeseries"
+        },
+        {
+          "info": {
+            "name": "Love Percent Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/app-health/love-percent",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Love Percent Data"
+        },
+        {
+          "info": {
+            "name": "Star Ratings Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/app-health/ratings",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Star Ratings Data"
+        },
+        {
+          "info": {
+            "name": "Retention Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/app-health/retention",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "retention period, should be 'monthly' or 'daily'"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Retention Data"
+        },
+        {
+          "info": {
+            "name": "Fan Signals Counts Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/fan-signals/counts",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Fan Signals Counts Data"
+        },
+        {
+          "info": {
+            "name": "Net Fan Score Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/fan-signals/net-fan-score",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Net Fan Score Data"
+        },
+        {
+          "info": {
+            "name": "fetch app reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/reviews",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "the page size number"
+              },
+              {
+                "name": "starts_after",
+                "value": "",
+                "type": "query",
+                "description": "the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "regions",
+                "value": "",
+                "type": "query",
+                "description": "regions filter, can be comma-separated like US,CA,.. "
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "fetch app reviews"
+        },
+        {
+          "info": {
+            "name": "Event Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/stats/events",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "include_all",
+                "value": "",
+                "type": "query",
+                "description": "include apptentive events"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Events Stats"
+        },
+        {
+          "info": {
+            "name": "Event Trend Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/stats/event-trend",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query",
+                "description": "event label"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Events Trend Stats"
+        },
+        {
+          "info": {
+            "name": "Notes Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/stats/notes",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Notes Stats"
+        },
+        {
+          "info": {
+            "name": "Survey Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/stats/surveys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Surveys Stats"
+        },
+        {
+          "info": {
+            "name": "Survey Reporting Quantative Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/survey/:survey_id/stats",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "path",
+                "description": "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Survey Reporting Quantative Stats"
+        },
+        {
+          "info": {
+            "name": "Survey Reporting Text Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/survey/:survey_id/question/:question_id/responses",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "path",
+                "description": "the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "question_id",
+                "value": "",
+                "type": "path",
+                "description": "the question id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "the page number"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "the limit of text responses, max limit is 1000"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "Survey Reporting Text Responses"
+        },
+        {
+          "info": {
+            "name": "fetch survey responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/survey/insights",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "start date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "end date in format of YYYY-MM-DD"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "the page number"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "fetch survey responses"
+        },
+        {
+          "info": {
+            "name": "Triggers GDPR/CCPA request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/gdpr-ccpa/requests",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              }
+            ]
+          },
+          "docs": "Triggers GDPR/CCPA request"
+        },
+        {
+          "info": {
+            "name": "Fetches GDPR/CCPA request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metrics/v2/apps/:app_id/gdpr-ccpa/requests/:request_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "the id of submitted GDPR/CCPA request"
+              }
+            ]
+          },
+          "docs": "Fetches GDPR/CCPA request status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

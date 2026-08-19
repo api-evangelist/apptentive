@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "public-api-service experimental info API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show accessible endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/info",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+              },
+              {
+                "name": "accept",
+                "value": "",
+                "type": "query",
+                "description": "(optional) you can provide the accept header as 'accept' query parameter"
+              }
+            ]
+          },
+          "docs": "show access data endpoints"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

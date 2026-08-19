@@ -1,0 +1,2334 @@
+{
+  "item": [
+    {
+      "id": "6f3135ec-5ec3-4c1f-81eb-d6474cf16ce0",
+      "name": "experimental",
+      "description": {
+        "content": "experimental data endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39a8ccff-920a-4d63-a3a7-dbb9c424bffe",
+          "name": "Retrieve surveys",
+          "request": {
+            "name": "Retrieve surveys",
+            "description": {
+              "content": "Retrieve surveys",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experimental",
+                "v2",
+                "apps",
+                ":app_id",
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "start date in format of YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "end date in format of YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "the page size number"
+                },
+                {
+                  "disabled": false,
+                  "key": "starts_after",
+                  "value": "<string>",
+                  "description": "(Required) the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the accept header as 'accept' query parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "64a6d62c-0da4-4062-a29d-d32781ea193e",
+              "name": "survey responses object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"surveys\": [\n    {\n      \"id\": \"5e22085d5379215be800002b\",\n      \"active\": true,\n      \"created_at\": \"2014-09-24 21:29:07.489000+00:00\",\n      \"name\": \"My Survey\",\n      \"title\": \"Feature Usage Survey\",\n      \"description\": \"Please let us know what do you think about our rewards\"\n    },\n    {\n      \"id\": \"5e22085d5379215be800002b\",\n      \"active\": true,\n      \"created_at\": \"2014-09-24 21:29:07.489000+00:00\",\n      \"name\": \"My Survey\",\n      \"title\": \"Feature Usage Survey\",\n      \"description\": \"Please let us know what do you think about our rewards\"\n    }\n  ],\n  \"ends_with\": \"6e22085d5379215be800002b\",\n  \"page_size\": 250,\n  \"has_more\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7bc038f-c676-46b0-8858-31c88a1513e2",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"some params are missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e05c96a7-0e13-43ad-900c-286b5f88ce4f",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not authorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f9863d5-dc81-4c94-8000-31a41ed513e1",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unable to get the data - please contact the support team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f91ff4-2035-40b0-9ac4-beb62ac38baa",
+          "name": "Retrieve single survey response",
+          "request": {
+            "name": "Retrieve single survey response",
+            "description": {
+              "content": "Retrieve single survey response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experimental",
+                "v2",
+                "apps",
+                ":app_id",
+                "surveys",
+                ":survey_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the accept header as 'accept' query parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c6db0db7-1089-4c5c-b605-b47c534d6bec",
+              "name": "single survey response object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys",
+                    ":survey_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"614cb7b8a59ced06f8000055\",\n  \"active\": false,\n  \"created_at\": \"2020-01-01\",\n  \"updated_at\": \"2020-01-01\",\n  \"start_time\": \"2020-01-01\",\n  \"end_time\": \"2020-01-01\",\n  \"response_count\": 115000,\n  \"response_rate\": 85.93,\n  \"name\": \"My Survey\",\n  \"title\": \"Feature Usage Survey\",\n  \"description\": \"Please let us know what do you think about our rewards\",\n  \"events\": [\n    \"bucket-award-open\",\n    \"bucket-award-open\"\n  ],\n  \"required\": true,\n  \"multiple_responses\": false,\n  \"show_success_message\": true,\n  \"success_message\": \"Thank you for your input.\",\n  \"view_period\": 86400,\n  \"resp_max\": 1000,\n  \"view_count\": 340,\n  \"questions\": [\n    {\n      \"id\": \"614cb7b8a59ced06f8000055\",\n      \"type\": \"multichoice | multiselect | range | nps | singleline\",\n      \"value\": \"What would you like improved in the app?\",\n      \"required\": true,\n      \"answer_choices\": [\n        {\n          \"id\": \"614cb7b8a59ced06f8000055\",\n          \"value\": \"Award System\"\n        },\n        {\n          \"id\": \"614cb7b8a59ced06f8000055\",\n          \"value\": \"Award System\"\n        }\n      ],\n      \"range_choice\": {\n        \"min\": 1,\n        \"max\": 5,\n        \"min_value\": \"Low\",\n        \"max_value\": \"High\"\n      }\n    },\n    {\n      \"id\": \"614cb7b8a59ced06f8000055\",\n      \"type\": \"multichoice | multiselect | range | nps | singleline\",\n      \"value\": \"What would you like improved in the app?\",\n      \"required\": true,\n      \"answer_choices\": [\n        {\n          \"id\": \"614cb7b8a59ced06f8000055\",\n          \"value\": \"Award System\"\n        },\n        {\n          \"id\": \"614cb7b8a59ced06f8000055\",\n          \"value\": \"Award System\"\n        }\n      ],\n      \"range_choice\": {\n        \"min\": 1,\n        \"max\": 5,\n        \"min_value\": \"Low\",\n        \"max_value\": \"High\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8780a45d-6d63-48b0-ada3-ef0a4bc2db65",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys",
+                    ":survey_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"some params are missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2eea0d83-529f-4268-824b-608c3d5e22ef",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys",
+                    ":survey_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not authorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47b46ea0-9eb3-46da-9621-4194bebd20a1",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "surveys",
+                    ":survey_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) the survey id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unable to get the data - please contact the support team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59d485cd-25e6-47b4-9a57-0c62ae344660",
+          "name": "Retrieve basic notes information",
+          "request": {
+            "name": "Retrieve basic notes information",
+            "description": {
+              "content": "Retrieve single survey response",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experimental",
+                "v2",
+                "apps",
+                ":app_id",
+                "notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "start date in format of YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "end date in format of YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "the page size number"
+                },
+                {
+                  "disabled": false,
+                  "key": "starts_after",
+                  "value": "<string>",
+                  "description": "(Required) the non-inclusive offset in in mongo id format (ex. 5e22085d5379215be800002b)"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the accept header as 'accept' query parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6ce15b0e-0531-48c8-8bd1-90888d5fe697",
+              "name": "notes responses object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"notes\": [\n    {\n      \"id\": \"5e22085d5379215be800002b\",\n      \"active\": true,\n      \"created_at\": \"2014-09-24 21:29:07.489000+00:00\",\n      \"name\": \"My Note\",\n      \"title\": \"Feature Usage Note\",\n      \"body\": \"Please let us know what do you think about our rewards\"\n    },\n    {\n      \"id\": \"5e22085d5379215be800002b\",\n      \"active\": true,\n      \"created_at\": \"2014-09-24 21:29:07.489000+00:00\",\n      \"name\": \"My Note\",\n      \"title\": \"Feature Usage Note\",\n      \"body\": \"Please let us know what do you think about our rewards\"\n    }\n  ],\n  \"ends_with\": \"6e22085d5379215be800002b\",\n  \"page_size\": 250,\n  \"has_more\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc2da5e5-3228-42f5-9ee4-4e3e2d4abdb8",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"some params are missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "182608d9-639e-4c91-ba8c-c4a9d3b8add1",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not authorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60279b26-97df-4fa2-bc38-6d5755fc3c45",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "starts_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unable to get the data - please contact the support team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5568eb58-fec5-4c50-af8b-e17de874f57d",
+          "name": "Retrieve single note",
+          "request": {
+            "name": "Retrieve single note",
+            "description": {
+              "content": "Retrieve single note",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experimental",
+                "v2",
+                "apps",
+                ":app_id",
+                "notes",
+                ":note_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the accept header as 'accept' query parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "note_id",
+                  "description": "(Required) the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ff8e24f4-a4b2-44a5-aa18-6a85561d6e47",
+              "name": "single note response object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes",
+                    ":note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "note_id",
+                      "description": "(Required) the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Feedback Note\",\n  \"title\": \"Your Feedback is important\",\n  \"body\": \"We've updated our rewards system and would love your feedback\",\n  \"start_time\": \"2020-01-01\",\n  \"end_time\": \"2020-01-01\",\n  \"first_active_at\": \"2020-01-01\",\n  \"active\": false,\n  \"views\": 11144,\n  \"actions\": [\n    {\n      \"count\": 129405,\n      \"interaction_type\": \"Survey | cancel | dismiss | NavigateToLink\",\n      \"label\": \"No thanks\"\n    },\n    {\n      \"count\": 129405,\n      \"interaction_type\": \"Survey | cancel | dismiss | NavigateToLink\",\n      \"label\": \"No thanks\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1e8fd1f-3294-4a49-b87b-41cccba1e2ed",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes",
+                    ":note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "note_id",
+                      "description": "(Required) the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"some params are missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "495ddf53-95ec-4140-a1d2-c6e18097fb06",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes",
+                    ":note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "note_id",
+                      "description": "(Required) the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not authorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a177682-ba10-4cfe-9d03-85eb066ea365",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "notes",
+                    ":note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "note_id",
+                      "description": "(Required) the note id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unable to get the data - please contact the support team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0db97bff-3516-4677-82dc-de9a7dbadd0d",
+          "name": "Retrieve Native SDK version distribution",
+          "request": {
+            "name": "Retrieve Native SDK version distribution",
+            "description": {
+              "content": "Retrieve SDK destribution",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experimental",
+                "v2",
+                "apps",
+                ":app_id",
+                "reach",
+                "sdk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the accept header as 'accept' query parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "03fa40c6-4571-4ae7-81d1-23fef0bce7c0",
+              "name": "sdk versions reponse object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "reach",
+                    "sdk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"app_id\": \"5e22085d5379215be800002b\",\n  \"start_date\": \"2022-05-17\",\n  \"end_date\": \"2022-06-17\",\n  \"total_mau\": 41674096,\n  \"sdk_versions\": [\n    {\n      \"version\": \"6.0.1\",\n      \"mau_unique\": 41255288,\n      \"percentage_from_total\": 98.995\n    },\n    {\n      \"version\": \"6.0.1\",\n      \"mau_unique\": 41255288,\n      \"percentage_from_total\": 98.995\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49ed30e2-6632-41bd-b661-fb17a7c922d9",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "reach",
+                    "sdk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"some params are missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2ac6686-e222-4a2e-bc03-701e95c4f6a5",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "reach",
+                    "sdk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not authorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2f92bd8-04d0-45fb-92d3-01d118d942ad",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "reach",
+                    "sdk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unable to get the data - please contact the support team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d887db51-eaae-4c8d-9cfc-52c941f07b5d",
+          "name": "Retrieve Rating Dialogs (Request-To-Rate)",
+          "request": {
+            "name": "Retrieve Rating Dialogs (Request-To-Rate)",
+            "description": {
+              "content": "Retrieve Rating Dialogs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experimental",
+                "v2",
+                "apps",
+                ":app_id",
+                "app-health",
+                "rating-dialog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "(Required) start date in format of YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "(Required) end date in format of YYYY-MM-DD"
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the X-API-KEY as 'api_key' query parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "accept",
+                  "value": "<string>",
+                  "description": "(optional) you can provide the accept header as 'accept' query parameter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1aa95fe2-a2a7-4355-af83-8c6350fd2fe9",
+              "name": "sdk versions reponse object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "app-health",
+                    "rating-dialog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"app_id\": \"5e22085d5379215be800002b\",\n  \"start_date\": \"2022-05-17\",\n  \"end_date\": \"2022-06-17\",\n  \"rating_opportunities\": {\n    \"opportunites\": 236993,\n    \"via_in_app_dialog\": 236293,\n    \"via_apptentive_rate_action\": 700\n  },\n  \"in_app_rating_dialogs\": {\n    \"dialog_views\": 36076,\n    \"not_shown\": 46346,\n    \"alt_dialog\": 2523\n  },\n  \"apptentive_rating_dialogs\": {\n    \"rated\": 23423,\n    \"remind_me\": 342,\n    \"no_thanks\": 15\n  },\n  \"data\": [\n    {\n      \"date\": \"2022-05-17\",\n      \"dialog_views\": 100,\n      \"not_shown\": 200,\n      \"alt_dialog\": 300,\n      \"apptentive_rated\": 400,\n      \"apptentive_remind_me\": 500,\n      \"apptentive_no_thanks\": 500\n    },\n    {\n      \"date\": \"2022-05-17\",\n      \"dialog_views\": 100,\n      \"not_shown\": 200,\n      \"alt_dialog\": 300,\n      \"apptentive_rated\": 400,\n      \"apptentive_remind_me\": 500,\n      \"apptentive_no_thanks\": 500\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b06ba7c9-842f-4b4d-8b06-0b9eafd24244",
+              "name": "bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "app-health",
+                    "rating-dialog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"some params are missing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dac1307b-0024-4d49-8b2b-dd9b2f53b4ae",
+              "name": "not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "app-health",
+                    "rating-dialog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not authorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12dc260c-d479-4200-9a9d-5ac9e4a98b76",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experimental",
+                    "v2",
+                    "apps",
+                    ":app_id",
+                    "app-health",
+                    "rating-dialog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accept",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) the application id in mongo id format (ex. 5e22085d5379215be800002b)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unable to get the data - please contact the support team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.apptentive.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "842fc139-80d4-41f9-b981-0cb25fa203d6",
+    "name": "public-api-service experimental API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public API Service",
+      "type": "text/plain"
+    }
+  }
+}

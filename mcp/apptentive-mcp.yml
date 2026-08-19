@@ -2,101 +2,106 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/apptentive-openapi-original.yml
-note: >-
-  No official first-party MCP server for the Apptentive / Alchemer Digital Data API was
-  found (the Alchemer MCP endpoints surfaced via Zapier/Pipedream proxy the Alchemer Survey
-  platform, not this Data API). This is a candidate tool list derived one-tool-per-operation
-  from the OpenAPI. Read-only export API (GET) plus one GDPR/CCPA POST.
+note: No official first-party MCP server for the Apptentive / Alchemer Digital Data API was found (the
+  Alchemer MCP endpoints surfaced via Zapier/Pipedream proxy the Alchemer Survey platform, not this Data
+  API). This is a candidate tool list derived one-tool-per-operation from the OpenAPI. Read-only export
+  API (GET) plus one GDPR/CCPA POST.
 server:
   name: apptentive
   transport: http
   base: https://data.apptentive.com
   auth: apiKey header X-API-KEY
 tools:
-  - name: show_data_endpoints
-    description: Show accessible data endpoints
-    source_operation: openapi/apptentive-openapi-original.yml#showDataEndpoints
-  - name: get_all_apps
-    description: List all apps associated with the token
-    source_operation: openapi/apptentive-openapi-original.yml#getAllApps
-  - name: get_active_users
-    description: Active users metrics for an app
-    source_operation: openapi/apptentive-openapi-original.yml#getActiveUsersData
-  - name: get_notes_timeseries
-    description: Notes interaction timeseries
-    source_operation: openapi/apptentive-openapi-original.yml#getNotes
-  - name: get_surveys_timeseries
-    description: Surveys interaction timeseries
-    source_operation: openapi/apptentive-openapi-original.yml#getSurveys
-  - name: get_love_percent
-    description: Love Percent metric timeseries
-    source_operation: openapi/apptentive-openapi-original.yml#getLovePercentData
-  - name: get_ratings
-    description: Star ratings data
-    source_operation: openapi/apptentive-openapi-original.yml#getRatings
-  - name: get_retention
-    description: Retention data
-    source_operation: openapi/apptentive-openapi-original.yml#getRetention
-  - name: get_fan_signals_counts
-    description: Fan Signals counts data
-    source_operation: openapi/apptentive-openapi-original.yml#getFSCounts
-  - name: get_net_fan_score
-    description: Net Fan Score data
-    source_operation: openapi/apptentive-openapi-original.yml#getNFSData
-  - name: fetch_reviews
-    description: Fetch app store reviews
-    source_operation: openapi/apptentive-openapi-original.yml#fetchReviews
-  - name: get_event_stats
-    description: Event stats
-    source_operation: openapi/apptentive-openapi-original.yml#getEventStats
-  - name: get_event_trend_stats
-    description: Event trend stats
-    source_operation: openapi/apptentive-openapi-original.yml#getEventTrendStats
-  - name: get_notes_stats
-    description: Notes stats
-    source_operation: openapi/apptentive-openapi-original.yml#getNotesStats
-  - name: get_survey_stats
-    description: Survey stats
-    source_operation: openapi/apptentive-openapi-original.yml#getSurveyStats
-  - name: get_one_survey_stats
-    description: Quantitative stats for one survey
-    source_operation: openapi/apptentive-openapi-original.yml#getOneSurveyStats
-  - name: get_survey_responses
-    description: Text responses for a survey question
-    source_operation: openapi/apptentive-openapi-original.yml#getSurveyResponses
-  - name: get_messages
-    description: Retrieve all messages (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getMessages
-  - name: get_devices
-    description: Retrieve all devices (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getDevices
-  - name: get_single_device
-    description: Retrieve a single device (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getSingleDevice
-  - name: get_people
-    description: Retrieve all people (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getPeople
-  - name: get_single_person
-    description: Retrieve a single person (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getSinglePerson
-  - name: get_conversations
-    description: Retrieve all conversations (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getConversations
-  - name: get_single_conversation
-    description: Retrieve a single conversation (raw)
-    source_operation: openapi/apptentive-openapi-original.yml#getSingleConversation
-  - name: get_raw_survey_responses
-    description: Retrieve all raw survey responses
-    source_operation: openapi/apptentive-openapi-original.yml#getRawSurveyResponses
-  - name: get_sdk_distribution
-    description: Native SDK version distribution
-    source_operation: openapi/apptentive-openapi-original.yml#getSDKDistribution
-  - name: get_rating_dialog
-    description: Rating dialog (request-to-rate) metrics
-    source_operation: openapi/apptentive-openapi-original.yml#getRatingDialog
-  - name: post_gdpr_request
-    description: Trigger a GDPR/CCPA data request (write)
-    source_operation: openapi/apptentive-openapi-original.yml#postGDPRRequest
-  - name: get_gdpr_request
-    description: Fetch GDPR/CCPA request status
-    source_operation: openapi/apptentive-openapi-original.yml#getGDPRRequest
+- name: show_data_endpoints
+  description: Show accessible data endpoints
+  source_operation: openapi/apptentive-openapi-original.yml#showDataEndpoints
+- name: get_all_apps
+  description: List all apps associated with the token
+  source_operation: openapi/apptentive-openapi-original.yml#getAllApps
+- name: get_active_users
+  description: Active users metrics for an app
+  source_operation: openapi/apptentive-openapi-original.yml#getActiveUsersData
+- name: get_notes_timeseries
+  description: Notes interaction timeseries
+  source_operation: openapi/apptentive-openapi-original.yml#getNotes
+- name: get_surveys_timeseries
+  description: Surveys interaction timeseries
+  source_operation: openapi/apptentive-openapi-original.yml#getSurveys
+- name: get_love_percent
+  description: Love Percent metric timeseries
+  source_operation: openapi/apptentive-openapi-original.yml#getLovePercentData
+- name: get_ratings
+  description: Star ratings data
+  source_operation: openapi/apptentive-openapi-original.yml#getRatings
+- name: get_retention
+  description: Retention data
+  source_operation: openapi/apptentive-openapi-original.yml#getRetention
+- name: get_fan_signals_counts
+  description: Fan Signals counts data
+  source_operation: openapi/apptentive-openapi-original.yml#getFSCounts
+- name: get_net_fan_score
+  description: Net Fan Score data
+  source_operation: openapi/apptentive-openapi-original.yml#getNFSData
+- name: fetch_reviews
+  description: Fetch app store reviews
+  source_operation: openapi/apptentive-openapi-original.yml#fetchReviews
+- name: get_event_stats
+  description: Event stats
+  source_operation: openapi/apptentive-openapi-original.yml#getEventStats
+- name: get_event_trend_stats
+  description: Event trend stats
+  source_operation: openapi/apptentive-openapi-original.yml#getEventTrendStats
+- name: get_notes_stats
+  description: Notes stats
+  source_operation: openapi/apptentive-openapi-original.yml#getNotesStats
+- name: get_survey_stats
+  description: Survey stats
+  source_operation: openapi/apptentive-openapi-original.yml#getSurveyStats
+- name: get_one_survey_stats
+  description: Quantitative stats for one survey
+  source_operation: openapi/apptentive-openapi-original.yml#getOneSurveyStats
+- name: get_survey_responses
+  description: Text responses for a survey question
+  source_operation: openapi/apptentive-openapi-original.yml#getSurveyResponses
+- name: get_messages
+  description: Retrieve all messages (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getMessages
+- name: get_devices
+  description: Retrieve all devices (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getDevices
+- name: get_single_device
+  description: Retrieve a single device (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getSingleDevice
+- name: get_people
+  description: Retrieve all people (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getPeople
+- name: get_single_person
+  description: Retrieve a single person (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getSinglePerson
+- name: get_conversations
+  description: Retrieve all conversations (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getConversations
+- name: get_single_conversation
+  description: Retrieve a single conversation (raw)
+  source_operation: openapi/apptentive-openapi-original.yml#getSingleConversation
+- name: get_raw_survey_responses
+  description: Retrieve all raw survey responses
+  source_operation: openapi/apptentive-openapi-original.yml#getRawSurveyResponses
+- name: get_sdk_distribution
+  description: Native SDK version distribution
+  source_operation: openapi/apptentive-openapi-original.yml#getSDKDistribution
+- name: get_rating_dialog
+  description: Rating dialog (request-to-rate) metrics
+  source_operation: openapi/apptentive-openapi-original.yml#getRatingDialog
+- name: post_gdpr_request
+  description: Trigger a GDPR/CCPA data request (write)
+  source_operation: openapi/apptentive-openapi-original.yml#postGDPRRequest
+- name: get_gdpr_request
+  description: Fetch GDPR/CCPA request status
+  source_operation: openapi/apptentive-openapi-original.yml#getGDPRRequest
+deployment:
+  mode: none
+  verified: derived
+  tools: 29
+  checked: '2026-08-12'
+  source: catalog MCP census
