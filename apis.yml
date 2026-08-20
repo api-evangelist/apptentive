@@ -54,6 +54,8 @@ apis:
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
   tags:
+  - Experimental
+  tags_raw:
   - experimental
   properties:
   - type: OpenAPI
@@ -70,6 +72,8 @@ apis:
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
   tags:
+  - Info
+  tags_raw:
   - info
   properties:
   - type: OpenAPI
@@ -86,6 +90,8 @@ apis:
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
   tags:
+  - Metrics
+  tags_raw:
   - metrics
   properties:
   - type: OpenAPI
@@ -102,6 +108,8 @@ apis:
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
   tags:
+  - Raw
+  tags_raw:
   - raw
   properties:
   - type: OpenAPI
