@@ -120,7 +120,7 @@ apis:
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
   tags:
-  - raw
+  - Raw
   tags_raw:
   - raw
   properties:
