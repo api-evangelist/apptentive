@@ -63,7 +63,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: apptentive:apptentive-experimental-api
-  name: Apptentive experimental API
+  name: Apptentive Experimental API
   description: experimental data endpoints
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
@@ -81,7 +81,7 @@ apis:
   - type: RateLimits
     url: rate-limits/apptentive-rate-limits.yml
 - aid: apptentive:apptentive-info-api
-  name: Apptentive info API
+  name: Apptentive Info API
   description: info endpoints
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
@@ -99,7 +99,7 @@ apis:
   - type: RateLimits
     url: rate-limits/apptentive-rate-limits.yml
 - aid: apptentive:apptentive-metrics-api
-  name: Apptentive metrics API
+  name: Apptentive Metrics API
   description: metrics data endpoints
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com
@@ -117,7 +117,7 @@ apis:
   - type: RateLimits
     url: rate-limits/apptentive-rate-limits.yml
 - aid: apptentive:apptentive-raw-api
-  name: Apptentive raw API
+  name: Apptentive Raw API
   description: raw data endpoints
   humanURL: https://help.alchemer.com/help/alchemer-digital-api
   baseURL: https://data.apptentive.com

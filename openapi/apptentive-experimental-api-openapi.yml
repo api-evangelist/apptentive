@@ -474,61 +474,6 @@ paths:
                 $ref: '#/components/schemas/ErrorInternalErrorResponse'
 components:
   schemas:
-    ErrorInternalErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: unable to get the data - please contact the support team
-    BasicNoteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the given survey id
-          example: 5e22085d5379215be800002b
-        active:
-          type: boolean
-          description: the state of note (active or not active)
-          example: true
-        created_at:
-          type: string
-          description: note created date
-          example: 2014-09-24 21:29:07.489000+00:00
-        name:
-          type: string
-          description: the name of note
-          example: My Note
-        title:
-          type: string
-          description: the title representation of the note
-          example: Feature Usage Note
-        body:
-          type: string
-          description: the description of the note
-          example: Please let us know what do you think about our rewards
-    ReachSDKResponse:
-      type: object
-      properties:
-        app_id:
-          type: string
-          description: apptentive's application identifier
-          example: 5e22085d5379215be800002b
-        start_date:
-          type: string
-          description: the start date representation in YYYY-MM-DD format
-          example: 2022-05-17
-        end_date:
-          type: string
-          description: the end date representation in YYYY-MM-DD format
-          example: 2022-06-17
-        total_mau:
-          type: integer
-          description: number of total monthly active users
-          example: 41674096
-        sdk_versions:
-          $ref: '#/components/schemas/SDKVersionArray'
     SurveyQuestionAnswerChoice:
       type: object
       properties:
@@ -540,11 +485,83 @@ components:
           type: string
           description: The text of the given Answer Choice
           example: Award System
+    SDKVersionObject:
+      properties:
+        version:
+          type: string
+          description: the version of Apptentive SDK
+          example: 6.0.1
+        mau_unique:
+          type: number
+          description: number of unique devices associated with corresponding SDK version
+          example: 41255288
+        percentage_from_total:
+          type: number
+          description: the percentage from the total active users (up to 5 floating points)
+          example: 98.995
+    ErrorBadRequestResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: some params are missing
+    BasicSurveyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the given survey id
+          example: 5e22085d5379215be800002b
+        active:
+          type: boolean
+          description: the state of survey (active or not active)
+          example: true
+        created_at:
+          type: string
+          description: survey created date
+          example: 2014-09-24 21:29:07.489000+00:00
+        name:
+          type: string
+          description: the name of survey
+          example: My Survey
+        title:
+          type: string
+          description: the title representation of the survey (for customers)
+          example: Feature Usage Survey
+        description:
+          type: string
+          description: the description of the survey
+          example: Please let us know what do you think about our rewards
+    ErrorInternalErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: unable to get the data - please contact the support team
     BasicNotesResponsesRowArray:
       type: array
       items:
         $ref: '#/components/schemas/BasicNoteResponse'
       description: the list of notes
+    BasicSurveyResponsesObject:
+      type: object
+      properties:
+        surveys:
+          $ref: '#/components/schemas/BasicSurveyResponsesRowArray'
+        ends_with:
+          type: string
+          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+          example: 6e22085d5379215be800002b
+        page_size:
+          type: number
+          description: the amount of requested results per request
+          example: 250
+        has_more:
+          type: boolean
+          description: true when additional objects are available for retrieval; false otherwise.
+          example: true
     SurveyQuestions:
       type: object
       properties:
@@ -570,13 +587,6 @@ components:
             $ref: '#/components/schemas/SurveyQuestionAnswerChoice'
         range_choice:
           $ref: '#/components/schemas/SurveyRangeAnswerChoice'
-    ErrorBadRequestResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: some params are missing
     SurveyRangeAnswerChoice:
       type: object
       properties:
@@ -596,28 +606,122 @@ components:
           type: string
           description: the max string representaion of range
           example: High
-    BasicSurveyResponsesRowArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/BasicSurveyResponse'
-      description: the list of surveys
-    BasicNotesResponsesObject:
+    DialogTimeseries:
       type: object
       properties:
-        notes:
-          $ref: '#/components/schemas/BasicNotesResponsesRowArray'
-        ends_with:
+        date:
           type: string
-          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
-          example: 6e22085d5379215be800002b
-        page_size:
+          description: the start date representation in YYYY-MM-DD format
+          example: 2022-05-17
+        dialog_views:
           type: number
-          description: the amount of requested results per request
-          example: 250
-        has_more:
-          type: boolean
-          description: true when additional objects are available for retrieval; false otherwise.
-          example: true
+          description: the amount of dialog views
+          example: 100
+        not_shown:
+          type: number
+          description: the amount of not shown views
+          example: 200
+        alt_dialog:
+          type: number
+          description: the amount of alt dialog views
+          example: 300
+        apptentive_rated:
+          type: number
+          description: the amount of apptentive rated views
+          example: 400
+        apptentive_remind_me:
+          type: number
+          description: the amount of apptentive remind me views
+          example: 500
+        apptentive_no_thanks:
+          type: number
+          description: the amount of apptentive no thanks views
+          example: 500
+    RatingDialogResponse:
+      type: object
+      properties:
+        app_id:
+          type: string
+          description: apptentive's application identifier
+          example: 5e22085d5379215be800002b
+        start_date:
+          type: string
+          description: the start date representation in YYYY-MM-DD format
+          example: 2022-05-17
+        end_date:
+          type: string
+          description: the end date representation in YYYY-MM-DD format
+          example: 2022-06-17
+        rating_opportunities:
+          type: object
+          properties:
+            opportunites:
+              type: number
+              description: the number of rating opportunities
+              example: 236993
+            via_in_app_dialog:
+              type: number
+              description: opportunities via in app dialog
+              example: 236293
+            via_apptentive_rate_action:
+              type: number
+              description: opportunities via apptentive rate action
+              example: 700
+        in_app_rating_dialogs:
+          type: object
+          properties:
+            dialog_views:
+              type: number
+              description: the number of dialog rating views
+              example: 36076
+            not_shown:
+              type: number
+              description: the number of not shown rating views
+              example: 46346
+            alt_dialog:
+              type: number
+              description: alternative dialog number
+              example: 2523
+        apptentive_rating_dialogs:
+          type: object
+          properties:
+            rated:
+              type: number
+              description: the number of apptentive rated dialog views
+              example: 23423
+            remind_me:
+              type: number
+              description: the number of apptentive remind me later dialog views
+              example: 342
+            no_thanks:
+              type: number
+              description: the number of apptentive declined dialog views
+              example: 15
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DialogTimeseries'
+    ReachSDKResponse:
+      type: object
+      properties:
+        app_id:
+          type: string
+          description: apptentive's application identifier
+          example: 5e22085d5379215be800002b
+        start_date:
+          type: string
+          description: the start date representation in YYYY-MM-DD format
+          example: 2022-05-17
+        end_date:
+          type: string
+          description: the end date representation in YYYY-MM-DD format
+          example: 2022-06-17
+        total_mau:
+          type: integer
+          description: number of total monthly active users
+          example: 41674096
+        sdk_versions:
+          $ref: '#/components/schemas/SDKVersionArray'
     SurveyStatsRow:
       type: object
       properties:
@@ -704,6 +808,37 @@ components:
           items:
             $ref: '#/components/schemas/SurveyQuestions'
           description: survey questions
+    NotesActionViewArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/NotesActionView'
+      description: list of notes actions
+    BasicNotesResponsesObject:
+      type: object
+      properties:
+        notes:
+          $ref: '#/components/schemas/BasicNotesResponsesRowArray'
+        ends_with:
+          type: string
+          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+          example: 6e22085d5379215be800002b
+        page_size:
+          type: number
+          description: the amount of requested results per request
+          example: 250
+        has_more:
+          type: boolean
+          description: true when additional objects are available for retrieval; false otherwise.
+          example: true
+    BasicSurveyResponsesRowArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/BasicSurveyResponse'
+      description: the list of surveys
+    SDKVersionArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/SDKVersionObject'
     NotesStatsRow:
       type: object
       properties:
@@ -740,55 +875,6 @@ components:
           example: 11144
         actions:
           $ref: '#/components/schemas/NotesActionViewArray'
-    BasicSurveyResponsesObject:
-      type: object
-      properties:
-        surveys:
-          $ref: '#/components/schemas/BasicSurveyResponsesRowArray'
-        ends_with:
-          type: string
-          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
-          example: 6e22085d5379215be800002b
-        page_size:
-          type: number
-          description: the amount of requested results per request
-          example: 250
-        has_more:
-          type: boolean
-          description: true when additional objects are available for retrieval; false otherwise.
-          example: true
-    NotesActionViewArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/NotesActionView'
-      description: list of notes actions
-    BasicSurveyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the given survey id
-          example: 5e22085d5379215be800002b
-        active:
-          type: boolean
-          description: the state of survey (active or not active)
-          example: true
-        created_at:
-          type: string
-          description: survey created date
-          example: 2014-09-24 21:29:07.489000+00:00
-        name:
-          type: string
-          description: the name of survey
-          example: My Survey
-        title:
-          type: string
-          description: the title representation of the survey (for customers)
-          example: Feature Usage Survey
-        description:
-          type: string
-          description: the description of the survey
-          example: Please let us know what do you think about our rewards
     ErrorUnauthorizedResponse:
       type: object
       properties:
@@ -796,84 +882,6 @@ components:
           type: string
           description: the root cause in text representation
           example: not authorized
-    RatingDialogResponse:
-      type: object
-      properties:
-        app_id:
-          type: string
-          description: apptentive's application identifier
-          example: 5e22085d5379215be800002b
-        start_date:
-          type: string
-          description: the start date representation in YYYY-MM-DD format
-          example: 2022-05-17
-        end_date:
-          type: string
-          description: the end date representation in YYYY-MM-DD format
-          example: 2022-06-17
-        rating_opportunities:
-          type: object
-          properties:
-            opportunites:
-              type: number
-              description: the number of rating opportunities
-              example: 236993
-            via_in_app_dialog:
-              type: number
-              description: opportunities via in app dialog
-              example: 236293
-            via_apptentive_rate_action:
-              type: number
-              description: opportunities via apptentive rate action
-              example: 700
-        in_app_rating_dialogs:
-          type: object
-          properties:
-            dialog_views:
-              type: number
-              description: the number of dialog rating views
-              example: 36076
-            not_shown:
-              type: number
-              description: the number of not shown rating views
-              example: 46346
-            alt_dialog:
-              type: number
-              description: alternative dialog number
-              example: 2523
-        apptentive_rating_dialogs:
-          type: object
-          properties:
-            rated:
-              type: number
-              description: the number of apptentive rated dialog views
-              example: 23423
-            remind_me:
-              type: number
-              description: the number of apptentive remind me later dialog views
-              example: 342
-            no_thanks:
-              type: number
-              description: the number of apptentive declined dialog views
-              example: 15
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DialogTimeseries'
-    SDKVersionObject:
-      properties:
-        version:
-          type: string
-          description: the version of Apptentive SDK
-          example: 6.0.1
-        mau_unique:
-          type: number
-          description: number of unique devices associated with corresponding SDK version
-          example: 41255288
-        percentage_from_total:
-          type: number
-          description: the percentage from the total active users (up to 5 floating points)
-          example: 98.995
     NotesActionView:
       type: object
       properties:
@@ -889,41 +897,33 @@ components:
           type: string
           description: the text label of the given note action
           example: No thanks
-    DialogTimeseries:
+    BasicNoteResponse:
       type: object
       properties:
-        date:
+        id:
           type: string
-          description: the start date representation in YYYY-MM-DD format
-          example: 2022-05-17
-        dialog_views:
-          type: number
-          description: the amount of dialog views
-          example: 100
-        not_shown:
-          type: number
-          description: the amount of not shown views
-          example: 200
-        alt_dialog:
-          type: number
-          description: the amount of alt dialog views
-          example: 300
-        apptentive_rated:
-          type: number
-          description: the amount of apptentive rated views
-          example: 400
-        apptentive_remind_me:
-          type: number
-          description: the amount of apptentive remind me views
-          example: 500
-        apptentive_no_thanks:
-          type: number
-          description: the amount of apptentive no thanks views
-          example: 500
-    SDKVersionArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/SDKVersionObject'
+          description: The id of the given survey id
+          example: 5e22085d5379215be800002b
+        active:
+          type: boolean
+          description: the state of note (active or not active)
+          example: true
+        created_at:
+          type: string
+          description: note created date
+          example: 2014-09-24 21:29:07.489000+00:00
+        name:
+          type: string
+          description: the name of note
+          example: My Note
+        title:
+          type: string
+          description: the title representation of the note
+          example: Feature Usage Note
+        body:
+          type: string
+          description: the description of the note
+          example: Please let us know what do you think about our rewards
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
