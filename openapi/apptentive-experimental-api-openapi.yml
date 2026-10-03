@@ -474,119 +474,6 @@ paths:
                 $ref: '#/components/schemas/ErrorInternalErrorResponse'
 components:
   schemas:
-    SurveyQuestionAnswerChoice:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the given Answer Choice
-          example: 614cb7b8a59ced06f8000055
-        value:
-          type: string
-          description: The text of the given Answer Choice
-          example: Award System
-    SDKVersionObject:
-      properties:
-        version:
-          type: string
-          description: the version of Apptentive SDK
-          example: 6.0.1
-        mau_unique:
-          type: number
-          description: number of unique devices associated with corresponding SDK version
-          example: 41255288
-        percentage_from_total:
-          type: number
-          description: the percentage from the total active users (up to 5 floating points)
-          example: 98.995
-    ErrorBadRequestResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: some params are missing
-    BasicSurveyResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the given survey id
-          example: 5e22085d5379215be800002b
-        active:
-          type: boolean
-          description: the state of survey (active or not active)
-          example: true
-        created_at:
-          type: string
-          description: survey created date
-          example: 2014-09-24 21:29:07.489000+00:00
-        name:
-          type: string
-          description: the name of survey
-          example: My Survey
-        title:
-          type: string
-          description: the title representation of the survey (for customers)
-          example: Feature Usage Survey
-        description:
-          type: string
-          description: the description of the survey
-          example: Please let us know what do you think about our rewards
-    ErrorInternalErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: unable to get the data - please contact the support team
-    BasicNotesResponsesRowArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/BasicNoteResponse'
-      description: the list of notes
-    BasicSurveyResponsesObject:
-      type: object
-      properties:
-        surveys:
-          $ref: '#/components/schemas/BasicSurveyResponsesRowArray'
-        ends_with:
-          type: string
-          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
-          example: 6e22085d5379215be800002b
-        page_size:
-          type: number
-          description: the amount of requested results per request
-          example: 250
-        has_more:
-          type: boolean
-          description: true when additional objects are available for retrieval; false otherwise.
-          example: true
-    SurveyQuestions:
-      type: object
-      properties:
-        id:
-          type: string
-          description: the id of the question
-          example: 614cb7b8a59ced06f8000055
-        type:
-          type: string
-          description: The type of Answer allowed (multichoice, multiselect, range, nps, or singleline which includes all open ended questions)
-          example: multichoice | multiselect | range | nps | singleline
-        value:
-          type: string
-          description: the question text
-          example: What would you like improved in the app?
-        required:
-          type: boolean
-          description: whether the Question is required
-          example: true
-        answer_choices:
-          type: array
-          items:
-            $ref: '#/components/schemas/SurveyQuestionAnswerChoice'
-        range_choice:
-          $ref: '#/components/schemas/SurveyRangeAnswerChoice'
     SurveyRangeAnswerChoice:
       type: object
       properties:
@@ -637,6 +524,83 @@ components:
           type: number
           description: the amount of apptentive no thanks views
           example: 500
+    BasicNoteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the given survey id
+          example: 5e22085d5379215be800002b
+        active:
+          type: boolean
+          description: the state of note (active or not active)
+          example: true
+        created_at:
+          type: string
+          description: note created date
+          example: 2014-09-24 21:29:07.489000+00:00
+        name:
+          type: string
+          description: the name of note
+          example: My Note
+        title:
+          type: string
+          description: the title representation of the note
+          example: Feature Usage Note
+        body:
+          type: string
+          description: the description of the note
+          example: Please let us know what do you think about our rewards
+    ReachSDKResponse:
+      type: object
+      properties:
+        app_id:
+          type: string
+          description: apptentive's application identifier
+          example: 5e22085d5379215be800002b
+        start_date:
+          type: string
+          description: the start date representation in YYYY-MM-DD format
+          example: 2022-05-17
+        end_date:
+          type: string
+          description: the end date representation in YYYY-MM-DD format
+          example: 2022-06-17
+        total_mau:
+          type: integer
+          description: number of total monthly active users
+          example: 41674096
+        sdk_versions:
+          $ref: '#/components/schemas/SDKVersionArray'
+    NotesActionView:
+      type: object
+      properties:
+        count:
+          type: number
+          description: total interaction count for the particular action
+          example: 129405
+        interaction_type:
+          type: string
+          description: the type of the note action
+          example: Survey | cancel | dismiss | NavigateToLink
+        label:
+          type: string
+          description: the text label of the given note action
+          example: No thanks
+    ErrorInternalErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: unable to get the data - please contact the support team
+    ErrorUnauthorizedResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: not authorized
     RatingDialogResponse:
       type: object
       properties:
@@ -701,27 +665,179 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DialogTimeseries'
-    ReachSDKResponse:
+    SDKVersionArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/SDKVersionObject'
+    BasicNotesResponsesRowArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/BasicNoteResponse'
+      description: the list of notes
+    BasicSurveyResponsesObject:
       type: object
       properties:
-        app_id:
+        surveys:
+          $ref: '#/components/schemas/BasicSurveyResponsesRowArray'
+        ends_with:
           type: string
-          description: apptentive's application identifier
+          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+          example: 6e22085d5379215be800002b
+        page_size:
+          type: number
+          description: the amount of requested results per request
+          example: 250
+        has_more:
+          type: boolean
+          description: true when additional objects are available for retrieval; false otherwise.
+          example: true
+    BasicSurveyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the given survey id
           example: 5e22085d5379215be800002b
-        start_date:
+        active:
+          type: boolean
+          description: the state of survey (active or not active)
+          example: true
+        created_at:
           type: string
-          description: the start date representation in YYYY-MM-DD format
-          example: 2022-05-17
-        end_date:
+          description: survey created date
+          example: 2014-09-24 21:29:07.489000+00:00
+        name:
           type: string
-          description: the end date representation in YYYY-MM-DD format
-          example: 2022-06-17
-        total_mau:
-          type: integer
-          description: number of total monthly active users
-          example: 41674096
-        sdk_versions:
-          $ref: '#/components/schemas/SDKVersionArray'
+          description: the name of survey
+          example: My Survey
+        title:
+          type: string
+          description: the title representation of the survey (for customers)
+          example: Feature Usage Survey
+        description:
+          type: string
+          description: the description of the survey
+          example: Please let us know what do you think about our rewards
+    BasicNotesResponsesObject:
+      type: object
+      properties:
+        notes:
+          $ref: '#/components/schemas/BasicNotesResponsesRowArray'
+        ends_with:
+          type: string
+          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
+          example: 6e22085d5379215be800002b
+        page_size:
+          type: number
+          description: the amount of requested results per request
+          example: 250
+        has_more:
+          type: boolean
+          description: true when additional objects are available for retrieval; false otherwise.
+          example: true
+    SurveyQuestionAnswerChoice:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the given Answer Choice
+          example: 614cb7b8a59ced06f8000055
+        value:
+          type: string
+          description: The text of the given Answer Choice
+          example: Award System
+    SurveyQuestions:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the id of the question
+          example: 614cb7b8a59ced06f8000055
+        type:
+          type: string
+          description: The type of Answer allowed (multichoice, multiselect, range, nps, or singleline which includes all open ended questions)
+          example: multichoice | multiselect | range | nps | singleline
+        value:
+          type: string
+          description: the question text
+          example: What would you like improved in the app?
+        required:
+          type: boolean
+          description: whether the Question is required
+          example: true
+        answer_choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/SurveyQuestionAnswerChoice'
+        range_choice:
+          $ref: '#/components/schemas/SurveyRangeAnswerChoice'
+    SDKVersionObject:
+      properties:
+        version:
+          type: string
+          description: the version of Apptentive SDK
+          example: 6.0.1
+        mau_unique:
+          type: number
+          description: number of unique devices associated with corresponding SDK version
+          example: 41255288
+        percentage_from_total:
+          type: number
+          description: the percentage from the total active users (up to 5 floating points)
+          example: 98.995
+    NotesStatsRow:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of the note
+          example: Feedback Note
+        title:
+          type: string
+          description: the title of the note
+          example: Your Feedback is important
+        body:
+          type: string
+          description: the description of the note
+          example: We've updated our rewards system and would love your feedback
+        start_time:
+          type: string
+          description: the date in format YYYY-MM-DD when note has officially launched, null if never started
+          example: '2020-01-01'
+        end_time:
+          type: string
+          description: the date in format YYYY-MM-DD when note has officially ended, null if never ended (still active)
+          example: '2020-01-01'
+        first_active_at:
+          type: string
+          description: the date in format YYYY-MM-DD when note was first active
+          example: '2020-01-01'
+        active:
+          type: boolean
+          description: boolean value determines if the note is active
+        views:
+          type: number
+          description: the total amount of views for the particular note
+          example: 11144
+        actions:
+          $ref: '#/components/schemas/NotesActionViewArray'
+    ErrorBadRequestResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: some params are missing
+    BasicSurveyResponsesRowArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/BasicSurveyResponse'
+      description: the list of surveys
+    NotesActionViewArray:
+      type: array
+      items:
+        $ref: '#/components/schemas/NotesActionView'
+      description: list of notes actions
     SurveyStatsRow:
       type: object
       properties:
@@ -808,122 +924,6 @@ components:
           items:
             $ref: '#/components/schemas/SurveyQuestions'
           description: survey questions
-    NotesActionViewArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/NotesActionView'
-      description: list of notes actions
-    BasicNotesResponsesObject:
-      type: object
-      properties:
-        notes:
-          $ref: '#/components/schemas/BasicNotesResponsesRowArray'
-        ends_with:
-          type: string
-          description: The id of the last object returned on the current page. This should be provided as the value of starts_after to fetch the next page of results.
-          example: 6e22085d5379215be800002b
-        page_size:
-          type: number
-          description: the amount of requested results per request
-          example: 250
-        has_more:
-          type: boolean
-          description: true when additional objects are available for retrieval; false otherwise.
-          example: true
-    BasicSurveyResponsesRowArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/BasicSurveyResponse'
-      description: the list of surveys
-    SDKVersionArray:
-      type: array
-      items:
-        $ref: '#/components/schemas/SDKVersionObject'
-    NotesStatsRow:
-      type: object
-      properties:
-        name:
-          type: string
-          description: the name of the note
-          example: Feedback Note
-        title:
-          type: string
-          description: the title of the note
-          example: Your Feedback is important
-        body:
-          type: string
-          description: the description of the note
-          example: We've updated our rewards system and would love your feedback
-        start_time:
-          type: string
-          description: the date in format YYYY-MM-DD when note has officially launched, null if never started
-          example: '2020-01-01'
-        end_time:
-          type: string
-          description: the date in format YYYY-MM-DD when note has officially ended, null if never ended (still active)
-          example: '2020-01-01'
-        first_active_at:
-          type: string
-          description: the date in format YYYY-MM-DD when note was first active
-          example: '2020-01-01'
-        active:
-          type: boolean
-          description: boolean value determines if the note is active
-        views:
-          type: number
-          description: the total amount of views for the particular note
-          example: 11144
-        actions:
-          $ref: '#/components/schemas/NotesActionViewArray'
-    ErrorUnauthorizedResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: not authorized
-    NotesActionView:
-      type: object
-      properties:
-        count:
-          type: number
-          description: total interaction count for the particular action
-          example: 129405
-        interaction_type:
-          type: string
-          description: the type of the note action
-          example: Survey | cancel | dismiss | NavigateToLink
-        label:
-          type: string
-          description: the text label of the given note action
-          example: No thanks
-    BasicNoteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the given survey id
-          example: 5e22085d5379215be800002b
-        active:
-          type: boolean
-          description: the state of note (active or not active)
-          example: true
-        created_at:
-          type: string
-          description: note created date
-          example: 2014-09-24 21:29:07.489000+00:00
-        name:
-          type: string
-          description: the name of note
-          example: My Note
-        title:
-          type: string
-          description: the title representation of the note
-          example: Feature Usage Note
-        body:
-          type: string
-          description: the description of the note
-          example: Please let us know what do you think about our rewards
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

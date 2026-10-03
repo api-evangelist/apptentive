@@ -108,6 +108,13 @@ components:
           type: string
           description: the root cause in text representation
           example: some params are missing
+    ErrorInternalErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: unable to get the data - please contact the support team
     AccessInfo:
       type: object
       properties:
@@ -121,13 +128,6 @@ components:
           items:
             type: string
             example: data.apptentive.com/...
-    ErrorInternalErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: unable to get the data - please contact the support team
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
