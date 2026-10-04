@@ -72,6 +72,13 @@ paths:
                 $ref: '#/components/schemas/ErrorInternalErrorResponse'
 components:
   schemas:
+    ErrorInternalErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: unable to get the data - please contact the support team
     CacheInfo:
       type: object
       properties:
@@ -94,27 +101,6 @@ components:
           type: string
           description: the root cause in text representation
           example: not authorized
-    InfoResponse:
-      type: object
-      properties:
-        access:
-          $ref: '#/components/schemas/AccessInfo'
-        cache:
-          $ref: '#/components/schemas/CacheInfo'
-    ErrorBadRequestResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: some params are missing
-    ErrorInternalErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: the root cause in text representation
-          example: unable to get the data - please contact the support team
     AccessInfo:
       type: object
       properties:
@@ -128,6 +114,20 @@ components:
           items:
             type: string
             example: data.apptentive.com/...
+    ErrorBadRequestResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the root cause in text representation
+          example: some params are missing
+    InfoResponse:
+      type: object
+      properties:
+        access:
+          $ref: '#/components/schemas/AccessInfo'
+        cache:
+          $ref: '#/components/schemas/CacheInfo'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
