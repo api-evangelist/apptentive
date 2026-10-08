@@ -135,6 +135,8 @@ apis:
   - type: RateLimits
     url: rate-limits/apptentive-rate-limits.yml
 common:
+- type: RateLimits
+  url: rate-limits/apptentive-rate-limits.yml
 - type: Overlay
   url: overlays/apptentive-openapi-overlay.yaml
 - type: DomainSecurity
